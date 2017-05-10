@@ -55,6 +55,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.tbEnterCity = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.lbFiveDay = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // btnUpdateWeather
@@ -287,12 +289,32 @@
             this.label2.TabIndex = 27;
             this.label2.Text = "Enter city:";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(679, 331);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(79, 13);
+            this.label14.TabIndex = 29;
+            this.label14.Text = "5 Day Forecast";
+            // 
+            // lbFiveDay
+            // 
+            this.lbFiveDay.FormattingEnabled = true;
+            this.lbFiveDay.Location = new System.Drawing.Point(578, 12);
+            this.lbFiveDay.Name = "lbFiveDay";
+            this.lbFiveDay.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbFiveDay.Size = new System.Drawing.Size(594, 316);
+            this.lbFiveDay.TabIndex = 30;
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnUpdateWeather;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 361);
+            this.ClientSize = new System.Drawing.Size(1184, 361);
+            this.Controls.Add(this.lbFiveDay);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbEnterCity);
             this.Controls.Add(this.lblLastUpdated);
@@ -355,6 +377,8 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox tbEnterCity;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ListBox lbFiveDay;
     }
 }
 
