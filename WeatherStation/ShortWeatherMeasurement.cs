@@ -7,10 +7,32 @@ using System.Threading.Tasks;
 namespace WeatherStation
 {
     [Serializable]
-    class ShortWeatherMeasurement
+    public class ShortWeatherMeasurement
     {
         public DateTime Date { get; set; }
-        public string TemperatureUnit { get; set; }
+        private string temperatureUnit;
+        public string TemperatureUnit
+        {
+            get
+            {
+                if(temperatureUnit == "imperial")
+                {
+                    return "°F";
+                }
+                else if(temperatureUnit == "metric")
+                {
+                    return "°C";
+                }
+                else
+                {
+                    return "°K";
+                }
+            }
+            set
+            {
+                temperatureUnit = value;
+            }
+        }
         public float TemperatureDay { get; set; }
         public float TemperatureMin { get; set; }
         public float TemperatureMax { get; set; }

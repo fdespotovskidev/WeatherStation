@@ -56,6 +56,12 @@
     <Compile Include="ShortWeatherMeasurement.cs" />
     <Compile Include="WeatherMap.cs" />
     <Compile Include="WeatherMeasurement.cs" />
+    <Compile Include="WeatherView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WeatherView.Designer.cs">
+      <DependentUpon>WeatherView.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -69,6 +75,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="WeatherView.resx">
+      <DependentUpon>WeatherView.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

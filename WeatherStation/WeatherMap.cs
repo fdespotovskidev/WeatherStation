@@ -134,7 +134,6 @@ namespace WeatherStation
             //Five day forecast update
 
             FiveDayMeasurementSourceAddress = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + City + "&mode=xml&units=" + Units + "&APPID=" + API_KEY;
-            
             try
             {
                 FiveDayWeatherData.Load(FiveDayMeasurementSourceAddress);

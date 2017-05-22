@@ -53,10 +53,10 @@
             this.tbEnterCity = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.lbFiveDay = new System.Windows.Forms.ListBox();
             this.pbHumidity = new System.Windows.Forms.PictureBox();
             this.pbTempMax = new System.Windows.Forms.PictureBox();
             this.pbTempMin = new System.Windows.Forms.PictureBox();
+            this.pnlFiveDayWeather = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.pbHumidity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTempMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTempMin)).BeginInit();
@@ -296,15 +296,6 @@
             this.label14.TabIndex = 29;
             this.label14.Text = "5 Day Forecast";
             // 
-            // lbFiveDay
-            // 
-            this.lbFiveDay.FormattingEnabled = true;
-            this.lbFiveDay.Location = new System.Drawing.Point(578, 12);
-            this.lbFiveDay.Name = "lbFiveDay";
-            this.lbFiveDay.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.lbFiveDay.Size = new System.Drawing.Size(594, 316);
-            this.lbFiveDay.TabIndex = 30;
-            // 
             // pbHumidity
             // 
             this.pbHumidity.Image = global::WeatherStation.Properties.Resources.drop_48x48;
@@ -335,16 +326,27 @@
             this.pbTempMin.TabIndex = 31;
             this.pbTempMin.TabStop = false;
             // 
+            // pnlFiveDayWeather
+            // 
+            this.pnlFiveDayWeather.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlFiveDayWeather.BackColor = System.Drawing.Color.White;
+            this.pnlFiveDayWeather.Location = new System.Drawing.Point(578, 12);
+            this.pnlFiveDayWeather.Name = "pnlFiveDayWeather";
+            this.pnlFiveDayWeather.Size = new System.Drawing.Size(594, 316);
+            this.pnlFiveDayWeather.TabIndex = 34;
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnUpdateWeather;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 361);
+            this.Controls.Add(this.pnlFiveDayWeather);
             this.Controls.Add(this.pbHumidity);
             this.Controls.Add(this.pbTempMax);
             this.Controls.Add(this.pbTempMin);
-            this.Controls.Add(this.lbFiveDay);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbEnterCity);
@@ -406,10 +408,10 @@
         private System.Windows.Forms.TextBox tbEnterCity;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ListBox lbFiveDay;
         private System.Windows.Forms.PictureBox pbTempMin;
         private System.Windows.Forms.PictureBox pbTempMax;
         private System.Windows.Forms.PictureBox pbHumidity;
+        private System.Windows.Forms.FlowLayoutPanel pnlFiveDayWeather;
     }
 }
 

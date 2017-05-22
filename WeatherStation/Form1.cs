@@ -23,6 +23,9 @@ namespace WeatherStation
             InitializeComponent();
             
             CurrentWeather = new WeatherMap();
+            pnlFiveDayWeather.AutoScroll = true;
+            pnlFiveDayWeather.WrapContents = false;
+            pnlFiveDayWeather.FlowDirection = FlowDirection.TopDown;
 
             if (CurrentWeather.LoadLastMeasurement())
             {
@@ -49,10 +52,10 @@ namespace WeatherStation
             lblWind.Text = string.Format("{0}, {1} km/h, {2}", CurrentWeather.Measurement.WindName, CurrentWeather.Measurement.WindSpeed, CurrentWeather.Measurement.WindDirection);
             lblClouds.Text = string.Format("{0}, {1}%", CurrentWeather.Measurement.CloudsName, CurrentWeather.Measurement.CloudsValue);
             lblLastUpdated.Text = string.Format("{0}, {1}", CurrentWeather.Measurement.LastUpdate.ToShortDateString(), CurrentWeather.Measurement.LastUpdate.ToLocalTime().ToShortTimeString());
-            lbFiveDay.Items.Clear();
+            pnlFiveDayWeather.Controls.Clear();
             foreach(ShortWeatherMeasurement swm in CurrentWeather.FiveDayMeasurements)
             {
-                lbFiveDay.Items.Add(swm.ToString());
+                pnlFiveDayWeather.Controls.Add(new WeatherView(swm));
             }
         }
         private void btnUpdateWeather_Click(object sender, EventArgs e)
