@@ -103,7 +103,7 @@ namespace WeatherStation
             float MaxTemperature;
             parseFloat(node.Attributes[2].Value, out MaxTemperature);
             Measurement.TemperatureMax = MaxTemperature;
-            Measurement.TemperatureUnit = node.Attributes[3].Value;
+            Measurement.TemperatureUnit = Units;
             node = WeatherData.SelectSingleNode("//humidity");
             int Humidity;
             int.TryParse(node.Attributes[0].Value, out Humidity);

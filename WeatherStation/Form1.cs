@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using WeatherStation.Properties;
 
 namespace WeatherStation
 {
@@ -44,9 +45,10 @@ namespace WeatherStation
             lblSunRise.Text = CurrentWeather.Measurement.SunRise.ToLocalTime().ToShortTimeString();
             lblSunSet.Text = CurrentWeather.Measurement.SunSet.ToLocalTime().ToShortTimeString();
             lblWeatherValue.Text = CurrentWeather.Measurement.WeatherValue;
-            lblCurrentTemperature.Text = string.Format("{0:0.0} ˚{1}", CurrentWeather.Measurement.TemperatureCurrent, (CurrentWeather.Units == "metric" ? "C" : CurrentWeather.Measurement.TemperatureUnit));
-            lblMinTemperature.Text = string.Format("{0:0.0} ˚{1}", CurrentWeather.Measurement.TemperatureMin, (CurrentWeather.Units == "metric" ? "C" : CurrentWeather.Measurement.TemperatureUnit));
-            lblMaxTemperature.Text = string.Format("{0:0.0} ˚{1}", CurrentWeather.Measurement.TemperatureMax, (CurrentWeather.Units == "metric" ? "C" : CurrentWeather.Measurement.TemperatureUnit));
+            lblCurrentTemperature.Text = string.Format("{0:00.0}{1}", CurrentWeather.Measurement.TemperatureCurrent, CurrentWeather.Measurement.TemperatureUnit);
+            lblCurrentTemperature.ForeColor = CurrentWeather.Measurement.TemperatureCurrent > 30 ? Color.Red : (CurrentWeather.Measurement.TemperatureCurrent > 20 ? Color.Yellow : (CurrentWeather.Measurement.TemperatureCurrent > 10 ? Color.LightGreen : (CurrentWeather.Measurement.TemperatureCurrent > 0 ? Color.LightBlue : Color.Blue)));
+            lblMinTemperature.Text = string.Format("{0:00.0}{1}", CurrentWeather.Measurement.TemperatureMin, CurrentWeather.Measurement.TemperatureUnit);
+            lblMaxTemperature.Text = string.Format("{0:00.0}{1}", CurrentWeather.Measurement.TemperatureMax, CurrentWeather.Measurement.TemperatureUnit);
             lblHumidity.Text = CurrentWeather.Measurement.Humidity.ToString() + "%";
             lblPressure.Text = string.Format("{0} {1}", CurrentWeather.Measurement.Pressure, CurrentWeather.Measurement.PressureUnit);
             lblWind.Text = string.Format("{0}, {1} km/h, {2}", CurrentWeather.Measurement.WindName, CurrentWeather.Measurement.WindSpeed, CurrentWeather.Measurement.WindDirection);

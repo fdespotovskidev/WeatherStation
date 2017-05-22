@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WeatherStation.Properties;
 
 namespace WeatherStation
 {
@@ -40,6 +41,8 @@ namespace WeatherStation
             lblCloudsDescription.Text = "-";
             lblMaximumTemperature.Text = "-";
             lblMinimumTemperature.Text = "-";
+            lblCurrentTemperature.Text = "-";
+            picWeatherIcon.Image = null;
         }
 
         private void UpdateView()
@@ -50,10 +53,28 @@ namespace WeatherStation
             }
             else
             {
+                if(Measurement.CloudsName.Contains("cloud"))
+                {
+                    picWeatherIcon.Image = Resources.clouds_128x128;
+                }
+                else if (Measurement.CloudsName.Contains("clear"))
+                {
+                    picWeatherIcon.Image = Resources.sun_128x128;
+                }
+                else if (Measurement.CloudsName.Contains("storm"))
+                {
+                    picWeatherIcon.Image = Resources.storm_128x128;
+                }
+                else if (Measurement.CloudsName.Contains("snow"))
+                {
+                    picWeatherIcon.Image = Resources.snow_128x128;
+                }
+
                 lblDate.Text = Measurement.Date.ToShortDateString();
                 lblCloudsDescription.Text = Measurement.CloudsName;
-                lblMinimumTemperature.Text = string.Format("{0}{1}", Measurement.TemperatureMin, Measurement.TemperatureUnit);
-                lblMaximumTemperature.Text = string.Format("{0}{1}", Measurement.TemperatureMax, Measurement.TemperatureUnit);
+                lblMinimumTemperature.Text = string.Format("{0:00.0}{1}", Measurement.TemperatureMin, Measurement.TemperatureUnit);
+                lblMaximumTemperature.Text = string.Format("{0:00.0}{1}", Measurement.TemperatureMax, Measurement.TemperatureUnit);
+                lblCurrentTemperature.Text = string.Format("{0:00.0}{1}", Measurement.TemperatureDay, Measurement.TemperatureUnit);
             }
         }
     }

@@ -100,5 +100,20 @@
   <ItemGroup>
     <None Include="images\drop_48x48.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="images\clouds_128x128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\sun_128x128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\storm_128x128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\snow_128x128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\temperature_128x128.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

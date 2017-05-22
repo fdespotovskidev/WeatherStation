@@ -15,7 +15,26 @@ namespace WeatherStation
         public float TemperatureCurrent { get; set; }
         public float TemperatureMin { get; set; }
         public float TemperatureMax { get; set; }
-        public string TemperatureUnit { get; set; }
+        public string temperatureUnit;
+        public string TemperatureUnit {
+            get {
+                if (temperatureUnit.ToLower() == "imperial")
+                {
+                    return "°F";
+                }
+                else if (temperatureUnit.ToLower() == "metric")
+                {
+                    return "°C";
+                }
+                else
+                {
+                    return "°K";
+                }
+            }
+            set {
+                temperatureUnit = value;
+            }
+        }
         public int Humidity { get; set; }
         public int Pressure { get; set; }
         public string PressureUnit { get; set; }

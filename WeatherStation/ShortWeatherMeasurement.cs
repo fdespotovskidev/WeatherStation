@@ -15,11 +15,11 @@ namespace WeatherStation
         {
             get
             {
-                if(temperatureUnit == "imperial")
+                if(temperatureUnit.ToLower() == "imperial")
                 {
                     return "°F";
                 }
-                else if(temperatureUnit == "metric")
+                else if(temperatureUnit.ToLower() == "metric")
                 {
                     return "°C";
                 }

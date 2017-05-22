@@ -53,10 +53,12 @@
             this.tbEnterCity = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.pnlFiveDayWeather = new System.Windows.Forms.FlowLayoutPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pbHumidity = new System.Windows.Forms.PictureBox();
             this.pbTempMax = new System.Windows.Forms.PictureBox();
             this.pbTempMin = new System.Windows.Forms.PictureBox();
-            this.pnlFiveDayWeather = new System.Windows.Forms.FlowLayoutPanel();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHumidity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTempMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTempMin)).BeginInit();
@@ -296,6 +298,27 @@
             this.label14.TabIndex = 29;
             this.label14.Text = "5 Day Forecast";
             // 
+            // pnlFiveDayWeather
+            // 
+            this.pnlFiveDayWeather.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlFiveDayWeather.BackColor = System.Drawing.Color.White;
+            this.pnlFiveDayWeather.Location = new System.Drawing.Point(578, 12);
+            this.pnlFiveDayWeather.Name = "pnlFiveDayWeather";
+            this.pnlFiveDayWeather.Size = new System.Drawing.Size(594, 316);
+            this.pnlFiveDayWeather.TabIndex = 34;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::WeatherStation.Properties.Resources.temperature_128x128;
+            this.pictureBox1.Location = new System.Drawing.Point(189, 122);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(48, 48);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 35;
+            this.pictureBox1.TabStop = false;
+            // 
             // pbHumidity
             // 
             this.pbHumidity.Image = global::WeatherStation.Properties.Resources.drop_48x48;
@@ -326,23 +349,13 @@
             this.pbTempMin.TabIndex = 31;
             this.pbTempMin.TabStop = false;
             // 
-            // pnlFiveDayWeather
-            // 
-            this.pnlFiveDayWeather.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlFiveDayWeather.BackColor = System.Drawing.Color.White;
-            this.pnlFiveDayWeather.Location = new System.Drawing.Point(578, 12);
-            this.pnlFiveDayWeather.Name = "pnlFiveDayWeather";
-            this.pnlFiveDayWeather.Size = new System.Drawing.Size(594, 316);
-            this.pnlFiveDayWeather.TabIndex = 34;
-            // 
             // Form1
             // 
             this.AcceptButton = this.btnUpdateWeather;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 361);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pnlFiveDayWeather);
             this.Controls.Add(this.pbHumidity);
             this.Controls.Add(this.pbTempMax);
@@ -374,6 +387,7 @@
             this.Controls.Add(this.btnUpdateWeather);
             this.Name = "Form1";
             this.Text = "Weather Station";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHumidity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTempMax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTempMin)).EndInit();
@@ -412,6 +426,7 @@
         private System.Windows.Forms.PictureBox pbTempMax;
         private System.Windows.Forms.PictureBox pbHumidity;
         private System.Windows.Forms.FlowLayoutPanel pnlFiveDayWeather;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
