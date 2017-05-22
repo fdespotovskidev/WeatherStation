@@ -41,14 +41,14 @@ namespace WeatherStation
             lblSunRise.Text = CurrentWeather.Measurement.SunRise.ToLocalTime().ToShortTimeString();
             lblSunSet.Text = CurrentWeather.Measurement.SunSet.ToLocalTime().ToShortTimeString();
             lblWeatherValue.Text = CurrentWeather.Measurement.WeatherValue;
-            lblCurrentTemperature.Text = CurrentWeather.Measurement.TemperatureCurrent.ToString() + (CurrentWeather.Units == "metric" ? " C" : CurrentWeather.Measurement.TemperatureUnit);
-            lblMinTemperature.Text = CurrentWeather.Measurement.TemperatureMin.ToString() + (CurrentWeather.Units == "metric" ? " C" : CurrentWeather.Measurement.TemperatureUnit);
-            lblMaxTemperature.Text = CurrentWeather.Measurement.TemperatureMax.ToString() + (CurrentWeather.Units == "metric" ? " C" : CurrentWeather.Measurement.TemperatureUnit);
+            lblCurrentTemperature.Text = string.Format("{0:0.0} ˚{1}", CurrentWeather.Measurement.TemperatureCurrent, (CurrentWeather.Units == "metric" ? "C" : CurrentWeather.Measurement.TemperatureUnit));
+            lblMinTemperature.Text = string.Format("{0:0.0} ˚{1}", CurrentWeather.Measurement.TemperatureMin, (CurrentWeather.Units == "metric" ? "C" : CurrentWeather.Measurement.TemperatureUnit));
+            lblMaxTemperature.Text = string.Format("{0:0.0} ˚{1}", CurrentWeather.Measurement.TemperatureMax, (CurrentWeather.Units == "metric" ? "C" : CurrentWeather.Measurement.TemperatureUnit));
             lblHumidity.Text = CurrentWeather.Measurement.Humidity.ToString() + "%";
             lblPressure.Text = string.Format("{0} {1}", CurrentWeather.Measurement.Pressure, CurrentWeather.Measurement.PressureUnit);
             lblWind.Text = string.Format("{0}, {1} km/h, {2}", CurrentWeather.Measurement.WindName, CurrentWeather.Measurement.WindSpeed, CurrentWeather.Measurement.WindDirection);
             lblClouds.Text = string.Format("{0}, {1}%", CurrentWeather.Measurement.CloudsName, CurrentWeather.Measurement.CloudsValue);
-            lblLastUpdated.Text = string.Format("{0}, {1}", CurrentWeather.Measurement.LastUpdate.ToLongDateString(), CurrentWeather.Measurement.LastUpdate.ToLocalTime().ToShortTimeString());
+            lblLastUpdated.Text = string.Format("{0}, {1}", CurrentWeather.Measurement.LastUpdate.ToShortDateString(), CurrentWeather.Measurement.LastUpdate.ToLocalTime().ToShortTimeString());
             lbFiveDay.Items.Clear();
             foreach(ShortWeatherMeasurement swm in CurrentWeather.FiveDayMeasurements)
             {

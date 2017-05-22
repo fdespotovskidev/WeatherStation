@@ -12,9 +12,9 @@ namespace WeatherStation
         public string City { get; set; }
         public DateTime SunRise { get; set; }
         public DateTime SunSet { get; set; }
-        public int TemperatureCurrent { get; set; }
-        public int TemperatureMin { get; set; }
-        public int TemperatureMax { get; set; }
+        public float TemperatureCurrent { get; set; }
+        public float TemperatureMin { get; set; }
+        public float TemperatureMax { get; set; }
         public string TemperatureUnit { get; set; }
         public int Humidity { get; set; }
         public int Pressure { get; set; }
