@@ -122,5 +122,26 @@
   <ItemGroup>
     <None Include="images\sunset_48x48.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="images\clouds_256x256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\snow_256x256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\storm_256x256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\sun_256x256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\rain_128x128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\rain_256x256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\wind_48x48.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -93,9 +93,39 @@ namespace WeatherStation.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap clouds_256x256 {
+            get {
+                object obj = ResourceManager.GetObject("clouds_256x256", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap drop_48x48 {
             get {
                 object obj = ResourceManager.GetObject("drop_48x48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rain_128x128 {
+            get {
+                object obj = ResourceManager.GetObject("rain_128x128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rain_256x256 {
+            get {
+                object obj = ResourceManager.GetObject("rain_256x256", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,6 +143,16 @@ namespace WeatherStation.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap snow_256x256 {
+            get {
+                object obj = ResourceManager.GetObject("snow_256x256", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap storm_128x128 {
             get {
                 object obj = ResourceManager.GetObject("storm_128x128", resourceCulture);
@@ -123,9 +163,29 @@ namespace WeatherStation.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap storm_256x256 {
+            get {
+                object obj = ResourceManager.GetObject("storm_256x256", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sun_128x128 {
             get {
                 object obj = ResourceManager.GetObject("sun_128x128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sun_256x256 {
+            get {
+                object obj = ResourceManager.GetObject("sun_256x256", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -156,6 +216,16 @@ namespace WeatherStation.Properties {
         internal static System.Drawing.Bitmap temperature_128x128 {
             get {
                 object obj = ResourceManager.GetObject("temperature_128x128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wind_48x48 {
+            get {
+                object obj = ResourceManager.GetObject("wind_48x48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

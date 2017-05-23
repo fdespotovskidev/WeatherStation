@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnUpdateWeather = new System.Windows.Forms.Button();
             this.lblCity = new System.Windows.Forms.Label();
             this.lblSunRise = new System.Windows.Forms.Label();
@@ -48,24 +49,28 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.pnlFiveDayWeather = new System.Windows.Forms.FlowLayoutPanel();
+            this.gbUnits = new System.Windows.Forms.GroupBox();
+            this.rbMetric = new System.Windows.Forms.RadioButton();
+            this.rbImperial = new System.Windows.Forms.RadioButton();
             this.gbWindPressure = new System.Windows.Forms.GroupBox();
+            this.pbWind = new System.Windows.Forms.PictureBox();
             this.pbSunset = new System.Windows.Forms.PictureBox();
             this.pbSunrise = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pbHumidity = new System.Windows.Forms.PictureBox();
             this.pbTempMax = new System.Windows.Forms.PictureBox();
             this.pbTempMin = new System.Windows.Forms.PictureBox();
-            this.gbUnits = new System.Windows.Forms.GroupBox();
-            this.rbMetric = new System.Windows.Forms.RadioButton();
-            this.rbImperial = new System.Windows.Forms.RadioButton();
+            this.picWeatherIcon = new System.Windows.Forms.PictureBox();
+            this.gbUnits.SuspendLayout();
             this.gbWindPressure.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSunset)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSunrise)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHumidity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTempMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTempMin)).BeginInit();
-            this.gbUnits.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picWeatherIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // btnUpdateWeather
@@ -82,7 +87,7 @@
             // 
             this.lblCity.AutoSize = true;
             this.lblCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblCity.Location = new System.Drawing.Point(12, 9);
+            this.lblCity.Location = new System.Drawing.Point(18, 15);
             this.lblCity.Name = "lblCity";
             this.lblCity.Size = new System.Drawing.Size(164, 39);
             this.lblCity.TabIndex = 3;
@@ -110,7 +115,7 @@
             // 
             this.lblCurrentTemperature.AutoSize = true;
             this.lblCurrentTemperature.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblCurrentTemperature.Location = new System.Drawing.Point(12, 122);
+            this.lblCurrentTemperature.Location = new System.Drawing.Point(371, 19);
             this.lblCurrentTemperature.Name = "lblCurrentTemperature";
             this.lblCurrentTemperature.Size = new System.Drawing.Size(104, 55);
             this.lblCurrentTemperature.TabIndex = 9;
@@ -120,7 +125,7 @@
             // 
             this.lblMinTemperature.AutoSize = true;
             this.lblMinTemperature.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblMinTemperature.Location = new System.Drawing.Point(49, 177);
+            this.lblMinTemperature.Location = new System.Drawing.Point(567, 54);
             this.lblMinTemperature.Name = "lblMinTemperature";
             this.lblMinTemperature.Size = new System.Drawing.Size(34, 20);
             this.lblMinTemperature.TabIndex = 11;
@@ -130,7 +135,7 @@
             // 
             this.lblMaxTemperature.AutoSize = true;
             this.lblMaxTemperature.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblMaxTemperature.Location = new System.Drawing.Point(153, 177);
+            this.lblMaxTemperature.Location = new System.Drawing.Point(567, 24);
             this.lblMaxTemperature.Name = "lblMaxTemperature";
             this.lblMaxTemperature.Size = new System.Drawing.Size(34, 20);
             this.lblMaxTemperature.TabIndex = 13;
@@ -140,7 +145,7 @@
             // 
             this.lblHumidity.AutoSize = true;
             this.lblHumidity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblHumidity.Location = new System.Drawing.Point(258, 177);
+            this.lblHumidity.Location = new System.Drawing.Point(567, 84);
             this.lblHumidity.Name = "lblHumidity";
             this.lblHumidity.Size = new System.Drawing.Size(37, 20);
             this.lblHumidity.TabIndex = 15;
@@ -169,12 +174,12 @@
             // lblWindSpeed
             // 
             this.lblWindSpeed.AutoSize = true;
-            this.lblWindSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblWindSpeed.Location = new System.Drawing.Point(122, 19);
+            this.lblWindSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblWindSpeed.Location = new System.Drawing.Point(411, 84);
             this.lblWindSpeed.Name = "lblWindSpeed";
-            this.lblWindSpeed.Size = new System.Drawing.Size(48, 16);
+            this.lblWindSpeed.Size = new System.Drawing.Size(48, 20);
             this.lblWindSpeed.TabIndex = 19;
-            this.lblWindSpeed.Text = "-- km/h";
+            this.lblWindSpeed.Text = "-- m/s";
             // 
             // lblWindName
             // 
@@ -209,7 +214,7 @@
             // 
             this.lblWeatherValue.AutoSize = true;
             this.lblWeatherValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblWeatherValue.Location = new System.Drawing.Point(15, 90);
+            this.lblWeatherValue.Location = new System.Drawing.Point(191, 182);
             this.lblWeatherValue.Name = "lblWeatherValue";
             this.lblWeatherValue.Size = new System.Drawing.Size(103, 20);
             this.lblWeatherValue.TabIndex = 23;
@@ -219,7 +224,7 @@
             // 
             this.lblLastUpdated.AutoSize = true;
             this.lblLastUpdated.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblLastUpdated.Location = new System.Drawing.Point(15, 58);
+            this.lblLastUpdated.Location = new System.Drawing.Point(21, 63);
             this.lblLastUpdated.Name = "lblLastUpdated";
             this.lblLastUpdated.Size = new System.Drawing.Size(165, 20);
             this.lblLastUpdated.TabIndex = 25;
@@ -256,89 +261,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlFiveDayWeather.BackColor = System.Drawing.Color.White;
-            this.pnlFiveDayWeather.Location = new System.Drawing.Point(578, 12);
+            this.pnlFiveDayWeather.Location = new System.Drawing.Point(676, 12);
             this.pnlFiveDayWeather.Name = "pnlFiveDayWeather";
-            this.pnlFiveDayWeather.Size = new System.Drawing.Size(594, 316);
+            this.pnlFiveDayWeather.Size = new System.Drawing.Size(496, 316);
             this.pnlFiveDayWeather.TabIndex = 34;
-            // 
-            // gbWindPressure
-            // 
-            this.gbWindPressure.Controls.Add(this.lblWindName);
-            this.gbWindPressure.Controls.Add(this.lblWindSpeed);
-            this.gbWindPressure.Controls.Add(this.lblPressure);
-            this.gbWindPressure.Controls.Add(this.label9);
-            this.gbWindPressure.Location = new System.Drawing.Point(204, 215);
-            this.gbWindPressure.Name = "gbWindPressure";
-            this.gbWindPressure.Size = new System.Drawing.Size(368, 85);
-            this.gbWindPressure.TabIndex = 36;
-            this.gbWindPressure.TabStop = false;
-            this.gbWindPressure.Text = "Wind and Pressure";
-            // 
-            // pbSunset
-            // 
-            this.pbSunset.Image = global::WeatherStation.Properties.Resources.sunset_48x48;
-            this.pbSunset.Location = new System.Drawing.Point(19, 276);
-            this.pbSunset.Name = "pbSunset";
-            this.pbSunset.Size = new System.Drawing.Size(24, 24);
-            this.pbSunset.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbSunset.TabIndex = 38;
-            this.pbSunset.TabStop = false;
-            // 
-            // pbSunrise
-            // 
-            this.pbSunrise.Image = global::WeatherStation.Properties.Resources.sunrise_48x48;
-            this.pbSunrise.Location = new System.Drawing.Point(19, 243);
-            this.pbSunrise.Name = "pbSunrise";
-            this.pbSunrise.Size = new System.Drawing.Size(24, 24);
-            this.pbSunrise.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbSunrise.TabIndex = 37;
-            this.pbSunrise.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::WeatherStation.Properties.Resources.temperature_128x128;
-            this.pictureBox1.Location = new System.Drawing.Point(189, 122);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(48, 48);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 35;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pbHumidity
-            // 
-            this.pbHumidity.Image = global::WeatherStation.Properties.Resources.drop_48x48;
-            this.pbHumidity.Location = new System.Drawing.Point(228, 173);
-            this.pbHumidity.Name = "pbHumidity";
-            this.pbHumidity.Size = new System.Drawing.Size(24, 24);
-            this.pbHumidity.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbHumidity.TabIndex = 33;
-            this.pbHumidity.TabStop = false;
-            // 
-            // pbTempMax
-            // 
-            this.pbTempMax.Image = global::WeatherStation.Properties.Resources.arrow_up_48x48;
-            this.pbTempMax.Location = new System.Drawing.Point(122, 173);
-            this.pbTempMax.Name = "pbTempMax";
-            this.pbTempMax.Size = new System.Drawing.Size(24, 24);
-            this.pbTempMax.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbTempMax.TabIndex = 32;
-            this.pbTempMax.TabStop = false;
-            // 
-            // pbTempMin
-            // 
-            this.pbTempMin.Image = global::WeatherStation.Properties.Resources.arrow_down_48x48;
-            this.pbTempMin.Location = new System.Drawing.Point(19, 173);
-            this.pbTempMin.Name = "pbTempMin";
-            this.pbTempMin.Size = new System.Drawing.Size(24, 24);
-            this.pbTempMin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbTempMin.TabIndex = 31;
-            this.pbTempMin.TabStop = false;
             // 
             // gbUnits
             // 
             this.gbUnits.Controls.Add(this.rbMetric);
             this.gbUnits.Controls.Add(this.rbImperial);
-            this.gbUnits.Location = new System.Drawing.Point(478, 138);
+            this.gbUnits.Location = new System.Drawing.Point(576, 278);
             this.gbUnits.Name = "gbUnits";
             this.gbUnits.Size = new System.Drawing.Size(94, 71);
             this.gbUnits.TabIndex = 39;
@@ -369,6 +301,97 @@
             this.rbImperial.UseVisualStyleBackColor = true;
             this.rbImperial.CheckedChanged += new System.EventHandler(this.rbUnits_CheckedChanged);
             // 
+            // gbWindPressure
+            // 
+            this.gbWindPressure.Controls.Add(this.lblWindName);
+            this.gbWindPressure.Controls.Add(this.lblPressure);
+            this.gbWindPressure.Controls.Add(this.label9);
+            this.gbWindPressure.Location = new System.Drawing.Point(204, 215);
+            this.gbWindPressure.Name = "gbWindPressure";
+            this.gbWindPressure.Size = new System.Drawing.Size(368, 85);
+            this.gbWindPressure.TabIndex = 36;
+            this.gbWindPressure.TabStop = false;
+            this.gbWindPressure.Text = "Wind and Pressure";
+            // 
+            // pbWind
+            // 
+            this.pbWind.Image = global::WeatherStation.Properties.Resources.wind_48x48;
+            this.pbWind.Location = new System.Drawing.Point(381, 80);
+            this.pbWind.Name = "pbWind";
+            this.pbWind.Size = new System.Drawing.Size(24, 24);
+            this.pbWind.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbWind.TabIndex = 41;
+            this.pbWind.TabStop = false;
+            // 
+            // pbSunset
+            // 
+            this.pbSunset.Image = global::WeatherStation.Properties.Resources.sunset_48x48;
+            this.pbSunset.Location = new System.Drawing.Point(19, 276);
+            this.pbSunset.Name = "pbSunset";
+            this.pbSunset.Size = new System.Drawing.Size(24, 24);
+            this.pbSunset.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbSunset.TabIndex = 38;
+            this.pbSunset.TabStop = false;
+            // 
+            // pbSunrise
+            // 
+            this.pbSunrise.Image = global::WeatherStation.Properties.Resources.sunrise_48x48;
+            this.pbSunrise.Location = new System.Drawing.Point(19, 243);
+            this.pbSunrise.Name = "pbSunrise";
+            this.pbSunrise.Size = new System.Drawing.Size(24, 24);
+            this.pbSunrise.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbSunrise.TabIndex = 37;
+            this.pbSunrise.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::WeatherStation.Properties.Resources.temperature_128x128;
+            this.pictureBox1.Location = new System.Drawing.Point(25, 91);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(48, 48);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 35;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pbHumidity
+            // 
+            this.pbHumidity.Image = global::WeatherStation.Properties.Resources.drop_48x48;
+            this.pbHumidity.Location = new System.Drawing.Point(537, 80);
+            this.pbHumidity.Name = "pbHumidity";
+            this.pbHumidity.Size = new System.Drawing.Size(24, 24);
+            this.pbHumidity.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbHumidity.TabIndex = 33;
+            this.pbHumidity.TabStop = false;
+            // 
+            // pbTempMax
+            // 
+            this.pbTempMax.Image = global::WeatherStation.Properties.Resources.arrow_up_48x48;
+            this.pbTempMax.Location = new System.Drawing.Point(537, 20);
+            this.pbTempMax.Name = "pbTempMax";
+            this.pbTempMax.Size = new System.Drawing.Size(24, 24);
+            this.pbTempMax.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbTempMax.TabIndex = 32;
+            this.pbTempMax.TabStop = false;
+            // 
+            // pbTempMin
+            // 
+            this.pbTempMin.Image = global::WeatherStation.Properties.Resources.arrow_down_48x48;
+            this.pbTempMin.Location = new System.Drawing.Point(537, 50);
+            this.pbTempMin.Name = "pbTempMin";
+            this.pbTempMin.Size = new System.Drawing.Size(24, 24);
+            this.pbTempMin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbTempMin.TabIndex = 31;
+            this.pbTempMin.TabStop = false;
+            // 
+            // picWeatherIcon
+            // 
+            this.picWeatherIcon.Location = new System.Drawing.Point(195, 15);
+            this.picWeatherIcon.Name = "picWeatherIcon";
+            this.picWeatherIcon.Size = new System.Drawing.Size(164, 164);
+            this.picWeatherIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picWeatherIcon.TabIndex = 40;
+            this.picWeatherIcon.TabStop = false;
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnUpdateWeather;
@@ -376,6 +399,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 361);
             this.Controls.Add(this.gbUnits);
+            this.Controls.Add(this.pbWind);
+            this.Controls.Add(this.lblWindSpeed);
             this.Controls.Add(this.pbSunset);
             this.Controls.Add(this.pbSunrise);
             this.Controls.Add(this.gbWindPressure);
@@ -399,18 +424,22 @@
             this.Controls.Add(this.lblSunRise);
             this.Controls.Add(this.lblCity);
             this.Controls.Add(this.btnUpdateWeather);
+            this.Controls.Add(this.picWeatherIcon);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Weather Station";
+            this.gbUnits.ResumeLayout(false);
+            this.gbUnits.PerformLayout();
             this.gbWindPressure.ResumeLayout(false);
             this.gbWindPressure.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSunset)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSunrise)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHumidity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTempMax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTempMin)).EndInit();
-            this.gbUnits.ResumeLayout(false);
-            this.gbUnits.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picWeatherIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -447,6 +476,8 @@
         private System.Windows.Forms.GroupBox gbUnits;
         private System.Windows.Forms.RadioButton rbMetric;
         private System.Windows.Forms.RadioButton rbImperial;
+        private System.Windows.Forms.PictureBox picWeatherIcon;
+        private System.Windows.Forms.PictureBox pbWind;
     }
 }
 

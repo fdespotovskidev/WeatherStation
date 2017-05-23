@@ -53,19 +53,19 @@ namespace WeatherStation
             }
             else
             {
-                if(Measurement.CloudsName.Contains("cloud"))
+                if(Measurement.CloudsName.ToLower().Contains("cloud"))
                 {
                     picWeatherIcon.Image = Resources.clouds_128x128;
                 }
-                else if (Measurement.CloudsName.Contains("clear"))
+                else if (Measurement.CloudsName.ToLower().Contains("clear"))
                 {
                     picWeatherIcon.Image = Resources.sun_128x128;
                 }
-                else if (Measurement.CloudsName.Contains("storm"))
+                else if (Measurement.CloudsName.ToLower().Contains("storm"))
                 {
                     picWeatherIcon.Image = Resources.storm_128x128;
                 }
-                else if (Measurement.CloudsName.Contains("snow"))
+                else if (Measurement.CloudsName.ToLower().Contains("snow"))
                 {
                     picWeatherIcon.Image = Resources.snow_128x128;
                 }

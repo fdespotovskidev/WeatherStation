@@ -95,9 +95,30 @@ namespace WeatherStation
             lblHumidity.Text = CurrentWeather.Measurement.Humidity.ToString() + "%";
             lblPressure.Text = string.Format("{0} {1}", CurrentWeather.Measurement.Pressure, CurrentWeather.Measurement.PressureUnit);
             lblWindName.Text = CurrentWeather.Measurement.WindName;
-            lblWindSpeed.Text = string.Format("{0:0.00} {1} {2}", CurrentWeather.Measurement.WindSpeed, CurrentWeather.Units.ToLower() == "metric" ? "m/s" : "mph", CurrentWeather.Measurement.WindDirection);
+            lblWindSpeed.Text = string.Format("{0:00.0} {1}", CurrentWeather.Measurement.WindSpeed, CurrentWeather.Units.ToLower() == "metric" ? "m/s" : "mph");
             lblClouds.Text = string.Format("{0}, {1}%", CurrentWeather.Measurement.CloudsName, CurrentWeather.Measurement.CloudsValue);
             lblLastUpdated.Text = string.Format("{0}, {1}", CurrentWeather.Measurement.LastUpdate.ToShortDateString(), CurrentWeather.Measurement.LastUpdate.ToLocalTime().ToShortTimeString());
+            if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("cloud"))
+            {
+                picWeatherIcon.Image = Resources.clouds_256x256;
+            }
+            else if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("clear"))
+            {
+                picWeatherIcon.Image = Resources.sun_256x256;
+            }
+            else if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("storm"))
+            {
+                picWeatherIcon.Image = Resources.storm_256x256;
+            }
+            else if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("snow"))
+            {
+                picWeatherIcon.Image = Resources.snow_256x256;
+            }
+            else if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("rain"))
+            {
+                picWeatherIcon.Image = Resources.rain_256x256;
+            }
+
             pnlFiveDayWeather.Controls.Clear();
             foreach(ShortWeatherMeasurement swm in CurrentWeather.FiveDayMeasurements)
             {
