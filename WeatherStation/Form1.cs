@@ -22,7 +22,8 @@ namespace WeatherStation
         public Form1()
         {
             InitializeComponent();
-            
+            DoubleBuffered = true;
+
             CurrentWeather = new WeatherMap();
             pnlFiveDayWeather.AutoScroll = true;
             pnlFiveDayWeather.WrapContents = false;
@@ -30,11 +31,27 @@ namespace WeatherStation
 
             if (CurrentWeather.LoadLastMeasurement())
             {
+                if (CurrentWeather.Units == "metric")
+                {
+                    rbMetric.Checked = true;
+                }
+                else
+                {
+                    rbImperial.Checked = true;
+                }
                 UpdateView();
             } else
             {
                 CurrentWeather = new WeatherMap();
                 MessageBox.Show("Error! Load of measurement data failed!", "Error loading measurement data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (rbMetric.Checked == true)
+                {
+                    CurrentWeather.Units = "metric";
+                }
+                else
+                {
+                    CurrentWeather.Units = "imperial";
+                }
             }
 
         }
@@ -51,7 +68,8 @@ namespace WeatherStation
             lblMaxTemperature.Text = string.Format("{0:00.0}{1}", CurrentWeather.Measurement.TemperatureMax, CurrentWeather.Measurement.TemperatureUnit);
             lblHumidity.Text = CurrentWeather.Measurement.Humidity.ToString() + "%";
             lblPressure.Text = string.Format("{0} {1}", CurrentWeather.Measurement.Pressure, CurrentWeather.Measurement.PressureUnit);
-            lblWind.Text = string.Format("{0}, {1} km/h, {2}", CurrentWeather.Measurement.WindName, CurrentWeather.Measurement.WindSpeed, CurrentWeather.Measurement.WindDirection);
+            lblWindName.Text = CurrentWeather.Measurement.WindName;
+            lblWindSpeed.Text = string.Format("{0:0.00} km/h {1}", CurrentWeather.Measurement.WindSpeed, CurrentWeather.Measurement.WindDirection);
             lblClouds.Text = string.Format("{0}, {1}%", CurrentWeather.Measurement.CloudsName, CurrentWeather.Measurement.CloudsValue);
             lblLastUpdated.Text = string.Format("{0}, {1}", CurrentWeather.Measurement.LastUpdate.ToShortDateString(), CurrentWeather.Measurement.LastUpdate.ToLocalTime().ToShortTimeString());
             pnlFiveDayWeather.Controls.Clear();
@@ -60,20 +78,33 @@ namespace WeatherStation
                 pnlFiveDayWeather.Controls.Add(new WeatherView(swm));
             }
         }
+        private void UpdateWeather()
+        {
+            if (CurrentWeather.UpdateMeasurement())
+            {
+                UpdateView();
+            }
+            else
+            {
+                MessageBox.Show("Error! Something went wrong!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void btnUpdateWeather_Click(object sender, EventArgs e)
         {
             //CurrentWeather.UpdateMeasurement();
             if (tbEnterCity.Text.Trim().Length > 0)
             {
                 CurrentWeather.City = tbEnterCity.Text;
-                if (CurrentWeather.UpdateMeasurement())
+                /*if (CurrentWeather.UpdateMeasurement())
                 {
                     UpdateView();
                 }
                 else
                 {
                     MessageBox.Show("Error! Please enter valid information.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                }*/
+                UpdateWeather();
 
             }
             else
@@ -81,6 +112,19 @@ namespace WeatherStation
                 MessageBox.Show("Please enter a city!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void rbUnits_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbMetric.Checked == true)
+            {
+                CurrentWeather.Units = "metric";
+            }
+            else
+            {
+                CurrentWeather.Units = "imperial";
+            }
+            UpdateWeather();
         }
     }
 }

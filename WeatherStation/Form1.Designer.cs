@@ -29,39 +29,43 @@
         private void InitializeComponent()
         {
             this.btnUpdateWeather = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.lblCity = new System.Windows.Forms.Label();
             this.lblSunRise = new System.Windows.Forms.Label();
             this.lblSunSet = new System.Windows.Forms.Label();
             this.lblCurrentTemperature = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.lblMinTemperature = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.lblMaxTemperature = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.lblHumidity = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.lblPressure = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.lblWind = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lblWindSpeed = new System.Windows.Forms.Label();
+            this.lblWindName = new System.Windows.Forms.Label();
             this.lblClouds = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.lblWeatherValue = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.lblLastUpdated = new System.Windows.Forms.Label();
             this.tbEnterCity = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.pnlFiveDayWeather = new System.Windows.Forms.FlowLayoutPanel();
+            this.gbWindPressure = new System.Windows.Forms.GroupBox();
+            this.pbSunset = new System.Windows.Forms.PictureBox();
+            this.pbSunrise = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pbHumidity = new System.Windows.Forms.PictureBox();
             this.pbTempMax = new System.Windows.Forms.PictureBox();
             this.pbTempMin = new System.Windows.Forms.PictureBox();
+            this.gbUnits = new System.Windows.Forms.GroupBox();
+            this.rbMetric = new System.Windows.Forms.RadioButton();
+            this.rbImperial = new System.Windows.Forms.RadioButton();
+            this.gbWindPressure.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSunset)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSunrise)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHumidity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTempMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTempMin)).BeginInit();
+            this.gbUnits.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnUpdateWeather
@@ -73,15 +77,6 @@
             this.btnUpdateWeather.Text = "Update Weather";
             this.btnUpdateWeather.UseVisualStyleBackColor = true;
             this.btnUpdateWeather.Click += new System.EventHandler(this.btnUpdateWeather_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(225, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "City:";
             // 
             // lblCity
             // 
@@ -96,7 +91,7 @@
             // lblSunRise
             // 
             this.lblSunRise.AutoSize = true;
-            this.lblSunRise.Location = new System.Drawing.Point(63, 243);
+            this.lblSunRise.Location = new System.Drawing.Point(55, 250);
             this.lblSunRise.Name = "lblSunRise";
             this.lblSunRise.Size = new System.Drawing.Size(91, 13);
             this.lblSunRise.TabIndex = 5;
@@ -105,7 +100,7 @@
             // lblSunSet
             // 
             this.lblSunSet.AutoSize = true;
-            this.lblSunSet.Location = new System.Drawing.Point(63, 268);
+            this.lblSunSet.Location = new System.Drawing.Point(55, 283);
             this.lblSunSet.Name = "lblSunSet";
             this.lblSunSet.Size = new System.Drawing.Size(86, 13);
             this.lblSunSet.TabIndex = 7;
@@ -121,15 +116,6 @@
             this.lblCurrentTemperature.TabIndex = 9;
             this.lblCurrentTemperature.Text = "-- C";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(429, 143);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Temperature:";
-            // 
             // lblMinTemperature
             // 
             this.lblMinTemperature.AutoSize = true;
@@ -139,15 +125,6 @@
             this.lblMinTemperature.Size = new System.Drawing.Size(34, 20);
             this.lblMinTemperature.TabIndex = 11;
             this.lblMinTemperature.Text = "-- C";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(337, 177);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(89, 13);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Temperature min:";
             // 
             // lblMaxTemperature
             // 
@@ -159,15 +136,6 @@
             this.lblMaxTemperature.TabIndex = 13;
             this.lblMaxTemperature.Text = "-- C";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(428, 177);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(92, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Temperature max:";
-            // 
             // lblHumidity
             // 
             this.lblHumidity.AutoSize = true;
@@ -178,52 +146,45 @@
             this.lblHumidity.TabIndex = 15;
             this.lblHumidity.Text = "-- %";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(526, 177);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(50, 13);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Humidity:";
-            // 
             // lblPressure
             // 
             this.lblPressure.AutoSize = true;
-            this.lblPressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblPressure.Location = new System.Drawing.Point(251, 284);
+            this.lblPressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblPressure.Location = new System.Drawing.Point(122, 57);
             this.lblPressure.Name = "lblPressure";
-            this.lblPressure.Size = new System.Drawing.Size(70, 25);
+            this.lblPressure.Size = new System.Drawing.Size(43, 16);
             this.lblPressure.TabIndex = 17;
             this.lblPressure.Text = "-- hPa";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(201, 293);
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(6, 57);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(51, 13);
+            this.label9.Size = new System.Drawing.Size(65, 16);
             this.label9.TabIndex = 16;
             this.label9.Text = "Pressure:";
             // 
-            // lblWind
+            // lblWindSpeed
             // 
-            this.lblWind.AutoSize = true;
-            this.lblWind.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblWind.Location = new System.Drawing.Point(243, 259);
-            this.lblWind.Name = "lblWind";
-            this.lblWind.Size = new System.Drawing.Size(78, 25);
-            this.lblWind.TabIndex = 19;
-            this.lblWind.Text = "-- km/h";
+            this.lblWindSpeed.AutoSize = true;
+            this.lblWindSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblWindSpeed.Location = new System.Drawing.Point(122, 19);
+            this.lblWindSpeed.Name = "lblWindSpeed";
+            this.lblWindSpeed.Size = new System.Drawing.Size(48, 16);
+            this.lblWindSpeed.TabIndex = 19;
+            this.lblWindSpeed.Text = "-- km/h";
             // 
-            // label10
+            // lblWindName
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(202, 268);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(35, 13);
-            this.label10.TabIndex = 18;
-            this.label10.Text = "Wind:";
+            this.lblWindName.AutoSize = true;
+            this.lblWindName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblWindName.Location = new System.Drawing.Point(6, 19);
+            this.lblWindName.Name = "lblWindName";
+            this.lblWindName.Size = new System.Drawing.Size(42, 16);
+            this.lblWindName.TabIndex = 18;
+            this.lblWindName.Text = "Wind:";
             // 
             // lblClouds
             // 
@@ -253,15 +214,6 @@
             this.lblWeatherValue.Size = new System.Drawing.Size(103, 20);
             this.lblWeatherValue.TabIndex = 23;
             this.lblWeatherValue.Text = "weatherDesc";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(326, 90);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(51, 13);
-            this.label12.TabIndex = 22;
-            this.label12.Text = "Weather:";
             // 
             // lblLastUpdated
             // 
@@ -309,6 +261,39 @@
             this.pnlFiveDayWeather.Size = new System.Drawing.Size(594, 316);
             this.pnlFiveDayWeather.TabIndex = 34;
             // 
+            // gbWindPressure
+            // 
+            this.gbWindPressure.Controls.Add(this.lblWindName);
+            this.gbWindPressure.Controls.Add(this.lblWindSpeed);
+            this.gbWindPressure.Controls.Add(this.lblPressure);
+            this.gbWindPressure.Controls.Add(this.label9);
+            this.gbWindPressure.Location = new System.Drawing.Point(204, 215);
+            this.gbWindPressure.Name = "gbWindPressure";
+            this.gbWindPressure.Size = new System.Drawing.Size(368, 85);
+            this.gbWindPressure.TabIndex = 36;
+            this.gbWindPressure.TabStop = false;
+            this.gbWindPressure.Text = "Wind and Pressure";
+            // 
+            // pbSunset
+            // 
+            this.pbSunset.Image = global::WeatherStation.Properties.Resources.sunset_48x48;
+            this.pbSunset.Location = new System.Drawing.Point(19, 276);
+            this.pbSunset.Name = "pbSunset";
+            this.pbSunset.Size = new System.Drawing.Size(24, 24);
+            this.pbSunset.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbSunset.TabIndex = 38;
+            this.pbSunset.TabStop = false;
+            // 
+            // pbSunrise
+            // 
+            this.pbSunrise.Image = global::WeatherStation.Properties.Resources.sunrise_48x48;
+            this.pbSunrise.Location = new System.Drawing.Point(19, 243);
+            this.pbSunrise.Name = "pbSunrise";
+            this.pbSunrise.Size = new System.Drawing.Size(24, 24);
+            this.pbSunrise.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbSunrise.TabIndex = 37;
+            this.pbSunrise.TabStop = false;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::WeatherStation.Properties.Resources.temperature_128x128;
@@ -349,12 +334,51 @@
             this.pbTempMin.TabIndex = 31;
             this.pbTempMin.TabStop = false;
             // 
+            // gbUnits
+            // 
+            this.gbUnits.Controls.Add(this.rbMetric);
+            this.gbUnits.Controls.Add(this.rbImperial);
+            this.gbUnits.Location = new System.Drawing.Point(478, 138);
+            this.gbUnits.Name = "gbUnits";
+            this.gbUnits.Size = new System.Drawing.Size(94, 71);
+            this.gbUnits.TabIndex = 39;
+            this.gbUnits.TabStop = false;
+            this.gbUnits.Text = "Units";
+            // 
+            // rbMetric
+            // 
+            this.rbMetric.AutoSize = true;
+            this.rbMetric.Checked = true;
+            this.rbMetric.Location = new System.Drawing.Point(6, 42);
+            this.rbMetric.Name = "rbMetric";
+            this.rbMetric.Size = new System.Drawing.Size(54, 17);
+            this.rbMetric.TabIndex = 1;
+            this.rbMetric.TabStop = true;
+            this.rbMetric.Text = "Metric";
+            this.rbMetric.UseVisualStyleBackColor = true;
+            this.rbMetric.CheckedChanged += new System.EventHandler(this.rbUnits_CheckedChanged);
+            // 
+            // rbImperial
+            // 
+            this.rbImperial.AutoSize = true;
+            this.rbImperial.Location = new System.Drawing.Point(6, 19);
+            this.rbImperial.Name = "rbImperial";
+            this.rbImperial.Size = new System.Drawing.Size(61, 17);
+            this.rbImperial.TabIndex = 0;
+            this.rbImperial.Text = "Imperial";
+            this.rbImperial.UseVisualStyleBackColor = true;
+            this.rbImperial.CheckedChanged += new System.EventHandler(this.rbUnits_CheckedChanged);
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnUpdateWeather;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 361);
+            this.Controls.Add(this.gbUnits);
+            this.Controls.Add(this.pbSunset);
+            this.Controls.Add(this.pbSunrise);
+            this.Controls.Add(this.gbWindPressure);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pnlFiveDayWeather);
             this.Controls.Add(this.pbHumidity);
@@ -365,32 +389,28 @@
             this.Controls.Add(this.tbEnterCity);
             this.Controls.Add(this.lblLastUpdated);
             this.Controls.Add(this.lblWeatherValue);
-            this.Controls.Add(this.label12);
             this.Controls.Add(this.lblClouds);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.lblWind);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.lblPressure);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.lblHumidity);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.lblMaxTemperature);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.lblMinTemperature);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.lblCurrentTemperature);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.lblSunSet);
             this.Controls.Add(this.lblSunRise);
             this.Controls.Add(this.lblCity);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnUpdateWeather);
             this.Name = "Form1";
             this.Text = "Weather Station";
+            this.gbWindPressure.ResumeLayout(false);
+            this.gbWindPressure.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSunset)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSunrise)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHumidity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTempMax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTempMin)).EndInit();
+            this.gbUnits.ResumeLayout(false);
+            this.gbUnits.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -398,26 +418,20 @@
 
         #endregion
         private System.Windows.Forms.Button btnUpdateWeather;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblCity;
         private System.Windows.Forms.Label lblSunRise;
         private System.Windows.Forms.Label lblSunSet;
         private System.Windows.Forms.Label lblCurrentTemperature;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblMinTemperature;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblMaxTemperature;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblHumidity;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblPressure;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label lblWind;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblWindSpeed;
+        private System.Windows.Forms.Label lblWindName;
         private System.Windows.Forms.Label lblClouds;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lblWeatherValue;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblLastUpdated;
         private System.Windows.Forms.TextBox tbEnterCity;
         private System.Windows.Forms.Label label2;
@@ -427,6 +441,12 @@
         private System.Windows.Forms.PictureBox pbHumidity;
         private System.Windows.Forms.FlowLayoutPanel pnlFiveDayWeather;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.GroupBox gbWindPressure;
+        private System.Windows.Forms.PictureBox pbSunrise;
+        private System.Windows.Forms.PictureBox pbSunset;
+        private System.Windows.Forms.GroupBox gbUnits;
+        private System.Windows.Forms.RadioButton rbMetric;
+        private System.Windows.Forms.RadioButton rbImperial;
     }
 }
 

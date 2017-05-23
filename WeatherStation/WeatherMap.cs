@@ -61,6 +61,7 @@ namespace WeatherStation
                 {
                     Measurement = fmt.Deserialize(fs) as WeatherMeasurement;
                     FiveDayMeasurements = fmt.Deserialize(fs) as List<ShortWeatherMeasurement>;
+                    Units = fmt.Deserialize(fs) as string;
                 }
             }
             catch(Exception e)
@@ -177,6 +178,7 @@ namespace WeatherStation
             {
                 fmt.Serialize(fs, Measurement);
                 fmt.Serialize(fs, FiveDayMeasurements);
+                fmt.Serialize(fs, Units);
             }
 
             return true;

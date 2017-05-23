@@ -133,6 +133,26 @@ namespace WeatherStation.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap sunrise_48x48 {
+            get {
+                object obj = ResourceManager.GetObject("sunrise_48x48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sunset_48x48 {
+            get {
+                object obj = ResourceManager.GetObject("sunset_48x48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap temperature_128x128 {
             get {
                 object obj = ResourceManager.GetObject("temperature_128x128", resourceCulture);
