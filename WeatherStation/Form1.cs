@@ -56,6 +56,32 @@ namespace WeatherStation
 
         }
 
+        private Color GetTemperatureColor(float temperature, string unit)
+        {
+            if(unit == "imperial")
+            {
+                temperature = Utilities.ToCelsius(temperature);
+            }
+
+            if (temperature > 30)
+            {
+                return Color.Red;
+            }
+            else if (temperature > 20)
+            {
+                return Color.Yellow;
+            }
+            else if (temperature > 10)
+            {
+                return Color.LightGreen;
+            }
+            else if (temperature > 0)
+            {
+                return Color.LightBlue;
+            }
+            return Color.Blue;
+        }
+
         private void UpdateView()
         {
             lblCity.Text = CurrentWeather.Measurement.City;
@@ -63,7 +89,7 @@ namespace WeatherStation
             lblSunSet.Text = CurrentWeather.Measurement.SunSet.ToLocalTime().ToShortTimeString();
             lblWeatherValue.Text = CurrentWeather.Measurement.WeatherValue;
             lblCurrentTemperature.Text = string.Format("{0:00.0}{1}", CurrentWeather.Measurement.TemperatureCurrent, CurrentWeather.Measurement.TemperatureUnit);
-            lblCurrentTemperature.ForeColor = CurrentWeather.Measurement.TemperatureCurrent > 30 ? Color.Red : (CurrentWeather.Measurement.TemperatureCurrent > 20 ? Color.Yellow : (CurrentWeather.Measurement.TemperatureCurrent > 10 ? Color.LightGreen : (CurrentWeather.Measurement.TemperatureCurrent > 0 ? Color.LightBlue : Color.Blue)));
+            lblCurrentTemperature.ForeColor = GetTemperatureColor(CurrentWeather.Measurement.TemperatureCurrent, CurrentWeather.Units.ToLower());
             lblMinTemperature.Text = string.Format("{0:00.0}{1}", CurrentWeather.Measurement.TemperatureMin, CurrentWeather.Measurement.TemperatureUnit);
             lblMaxTemperature.Text = string.Format("{0:00.0}{1}", CurrentWeather.Measurement.TemperatureMax, CurrentWeather.Measurement.TemperatureUnit);
             lblHumidity.Text = CurrentWeather.Measurement.Humidity.ToString() + "%";
