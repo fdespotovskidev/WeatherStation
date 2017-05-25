@@ -94,10 +94,11 @@ namespace WeatherStation
             lblMaxTemperature.Text = string.Format("{0:00.0}{1}", CurrentWeather.Measurement.TemperatureMax, CurrentWeather.Measurement.TemperatureUnit);
             lblHumidity.Text = CurrentWeather.Measurement.Humidity.ToString() + "%";
             lblPressure.Text = string.Format("{0} {1}", CurrentWeather.Measurement.Pressure, CurrentWeather.Measurement.PressureUnit);
-            lblWindName.Text = CurrentWeather.Measurement.WindName;
+            lblWindName.Text = string.Format("{0}, {1}", CurrentWeather.Measurement.WindName, CurrentWeather.Measurement.WindDirection);
             lblWindSpeed.Text = string.Format("{0:00.0} {1}", CurrentWeather.Measurement.WindSpeed, CurrentWeather.Units.ToLower() == "metric" ? "m/s" : "mph");
             lblClouds.Text = string.Format("{0}, {1}%", CurrentWeather.Measurement.CloudsName, CurrentWeather.Measurement.CloudsValue);
             lblLastUpdated.Text = string.Format("{0}, {1}", CurrentWeather.Measurement.LastUpdate.ToShortDateString(), CurrentWeather.Measurement.LastUpdate.ToLocalTime().ToShortTimeString());
+            
             if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("cloud"))
             {
                 picWeatherIcon.Image = Resources.clouds_256x256;
@@ -114,9 +115,13 @@ namespace WeatherStation
             {
                 picWeatherIcon.Image = Resources.snow_256x256;
             }
-            else if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("rain"))
+            else if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("rain") || CurrentWeather.Measurement.WeatherValue.ToLower().Contains("drizzle"))
             {
                 picWeatherIcon.Image = Resources.rain_256x256;
+            }
+            else if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("mist"))
+            {
+                picWeatherIcon.Image = Resources.mist_256x256;
             }
 
             pnlFiveDayWeather.Controls.Clear();

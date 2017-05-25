@@ -143,5 +143,32 @@
   <ItemGroup>
     <None Include="images\wind_48x48.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="images\clouds_background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\rain_background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\snow_background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\storm_background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\sun_background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\pressure_48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\clouds_full_48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\mist_256x256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\clock_48x48.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

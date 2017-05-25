@@ -83,6 +83,16 @@ namespace WeatherStation.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap clock_48x48 {
+            get {
+                object obj = ResourceManager.GetObject("clock_48x48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap clouds_128x128 {
             get {
                 object obj = ResourceManager.GetObject("clouds_128x128", resourceCulture);
@@ -103,9 +113,39 @@ namespace WeatherStation.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap clouds_full_48x48 {
+            get {
+                object obj = ResourceManager.GetObject("clouds_full_48x48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap drop_48x48 {
             get {
                 object obj = ResourceManager.GetObject("drop_48x48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mist_256x256 {
+            get {
+                object obj = ResourceManager.GetObject("mist_256x256", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pressure_48x48 {
+            get {
+                object obj = ResourceManager.GetObject("pressure_48x48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

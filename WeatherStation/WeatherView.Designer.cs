@@ -108,7 +108,7 @@
             this.Controls.Add(this.picWeatherIcon);
             this.Controls.Add(this.lblDate);
             this.Name = "WeatherView";
-            this.Size = new System.Drawing.Size(363, 87);
+            this.Size = new System.Drawing.Size(300, 90);
             ((System.ComponentModel.ISupportInitialize)(this.picWeatherIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
