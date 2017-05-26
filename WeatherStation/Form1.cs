@@ -15,7 +15,7 @@ namespace WeatherStation
 {
     public partial class Form1 : Form
     {
-
+        private bool ConstructorCheckedChanged;
         private WeatherMap CurrentWeather;
         // Needed for animations
         private Color currentBackgroundColor;
@@ -27,13 +27,16 @@ namespace WeatherStation
         private PointF iconPosition;
         private int totalSteps = 0;
         private int currentSteps = 0;
+        private short CheckedCounter;
 
         public Form1()
         {
             InitializeComponent();
             DoubleBuffered = true;
-
+            ConstructorCheckedChanged = true;
             pnlFiveDayWeather.BackColor = Color.FromArgb(50, Color.DarkGray);
+            CheckedCounter = 0;
+            targetIconPosition = picWeatherIcon.Location;
 
             CurrentWeather = new WeatherMap();
             pnlFiveDayWeather.AutoScroll = true;
@@ -64,7 +67,7 @@ namespace WeatherStation
                     CurrentWeather.Units = "imperial";
                 }
             }
-
+            ConstructorCheckedChanged = false;
         }
 
         private Color GetTemperatureColor(float temperature, string unit)
@@ -84,7 +87,7 @@ namespace WeatherStation
             }
             else if (temperature > 10)
             {
-                return Color.LightGreen;
+                return Color.Green;
             }
             else if (temperature > 0)
             {
@@ -186,6 +189,11 @@ namespace WeatherStation
 
         private void rbUnits_CheckedChanged(object sender, EventArgs e)
         {
+            if (!ConstructorCheckedChanged)
+            {
+                CheckedCounter++;
+            }
+            
             if (rbMetric.Checked == true)
             {
                 CurrentWeather.Units = "metric";
@@ -194,7 +202,14 @@ namespace WeatherStation
             {
                 CurrentWeather.Units = "imperial";
             }
-            UpdateWeather();
+            if (!ConstructorCheckedChanged && CheckedCounter == 1)
+            {
+                UpdateWeather();
+            }
+            else if (!ConstructorCheckedChanged && CheckedCounter == 2)
+            {
+                CheckedCounter = 0;
+            }
         }
 
         private void Animate()
@@ -205,7 +220,7 @@ namespace WeatherStation
             backgroundColorIncrement = new ColorIncrement((targetBackgroundColor.R - currentBackgroundColor.R) / totalSteps,
                 (targetBackgroundColor.G - currentBackgroundColor.G) / totalSteps, 
                 (targetBackgroundColor.B - currentBackgroundColor.B) / totalSteps);
-            targetIconPosition = picWeatherIcon.Location;
+            
             iconPositionIncrement = new PointF(50.0f / totalSteps, 0f);
             picWeatherIcon.Image = null;
             picWeatherIcon.Location = new Point(targetIconPosition.X - 50, targetIconPosition.Y);
