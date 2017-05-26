@@ -181,4 +181,13 @@
   <data name="pressure_48x48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\pressure_48x48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="github_128x128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\github_128x128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="linkedin_128x128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\linkedin_128x128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="weather_station_512x512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\weather_station_512x512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

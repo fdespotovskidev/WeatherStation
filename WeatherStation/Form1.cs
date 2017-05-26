@@ -29,12 +29,16 @@ namespace WeatherStation
         private int currentSteps = 0;
         private short CheckedCounter;
 
+        private bool AutoUpdateEnabled;
+        private bool UpdateOnStartup;
+
         public Form1()
         {
             InitializeComponent();
             DoubleBuffered = true;
             ConstructorCheckedChanged = true;
             pnlFiveDayWeather.BackColor = Color.FromArgb(50, Color.DarkGray);
+            menuStrip1.BackColor = Color.FromArgb(50, Color.DarkGray);
             CheckedCounter = 0;
             targetIconPosition = picWeatherIcon.Location;
 
@@ -42,6 +46,14 @@ namespace WeatherStation
             pnlFiveDayWeather.AutoScroll = true;
             pnlFiveDayWeather.WrapContents = false;
             pnlFiveDayWeather.FlowDirection = FlowDirection.TopDown;
+            AutoUpdateTimer.Interval = 60000 * 10;
+
+            if (!LoadAutoUpdateSettings())
+            {
+                AutoUpdateEnabled = false;
+                AutoUpdateTimer.Enabled = false;
+                UpdateOnStartup = false;
+            }
 
             if (CurrentWeather.LoadLastMeasurement())
             {
@@ -53,7 +65,16 @@ namespace WeatherStation
                 {
                     rbImperial.Checked = true;
                 }
-                UpdateView();
+
+                if (AutoUpdateEnabled && UpdateOnStartup)
+                {
+                    UpdateWeather();
+                }
+                else
+                {
+                    UpdateView();
+                }
+                
             } else
             {
                 CurrentWeather = new WeatherMap();
@@ -87,7 +108,7 @@ namespace WeatherStation
             }
             else if (temperature > 10)
             {
-                return Color.Green;
+                return Color.Lime;
             }
             else if (temperature > 0)
             {
@@ -138,7 +159,7 @@ namespace WeatherStation
                 weatherIcon = Resources.rain_256x256;
                 targetBackgroundColor = Color.Lavender;
             }
-            else if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("mist"))
+            else if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("mist") || CurrentWeather.Measurement.WeatherValue.ToLower().Contains("haze"))
             {
                 weatherIcon = Resources.mist_256x256;
                 targetBackgroundColor = Color.LightGray;
@@ -252,6 +273,81 @@ namespace WeatherStation
                 picWeatherIcon.Image = Utilities.ChangeImageOpacity(weatherIcon, currentSteps / (float)totalSteps);
                 currentSteps++;
             }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new AboutForm().Show();
+        }
+
+        private void autoUpdateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AutoUpdate au = new AutoUpdate();
+            au.UpdateControls(AutoUpdateEnabled, AutoUpdateTimer.Interval / 60000, UpdateOnStartup);
+            if(au.ShowDialog() == DialogResult.OK)
+            {
+                AutoUpdateEnabled = au.AutoUpdateEnabled;
+                if(AutoUpdateEnabled)
+                {
+                    AutoUpdateTimer.Interval = 60000 * au.UpdateInterval;
+                    if (!AutoUpdateTimer.Enabled)
+                    {
+                        AutoUpdateTimer.Enabled = true;
+                    }
+                    UpdateOnStartup = au.UpdateOnStartup;
+                }
+                else
+                {
+                    UpdateOnStartup = false;
+                    AutoUpdateTimer.Interval = 60000 * 10;
+                    if (AutoUpdateTimer.Enabled)
+                    {
+                        AutoUpdateTimer.Enabled = false;
+                    }
+                }
+                SaveAutoUpdateSettings();
+            }
+            
+        }
+
+        private void AutoUpdateTimer_Tick(object sender, EventArgs e)
+        {
+            UpdateWeather();
+        }
+
+        private void SaveAutoUpdateSettings()
+        {
+            System.Runtime.Serialization.IFormatter ift = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+            using (FileStream fs = new FileStream("WeatherStationSettings.ws", FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
+            {
+                ift.Serialize(fs, AutoUpdateEnabled);
+                ift.Serialize(fs, AutoUpdateTimer.Interval);
+                ift.Serialize(fs, AutoUpdateTimer.Enabled);
+                ift.Serialize(fs, UpdateOnStartup);
+            }
+        }
+
+        private bool LoadAutoUpdateSettings()
+        {
+            try
+            {
+                System.Runtime.Serialization.IFormatter ift = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+                using (FileStream fs = new FileStream("WeatherStationSettings.ws", FileMode.Open, FileAccess.Read, FileShare.None))
+                {
+                    AutoUpdateEnabled = (bool)ift.Deserialize(fs);
+                    AutoUpdateTimer.Interval = (int)ift.Deserialize(fs);
+                    AutoUpdateTimer.Enabled = (bool)ift.Deserialize(fs);
+                    UpdateOnStartup = (bool)ift.Deserialize(fs);
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

@@ -133,6 +133,26 @@ namespace WeatherStation.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap github_128x128 {
+            get {
+                object obj = ResourceManager.GetObject("github_128x128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap linkedin_128x128 {
+            get {
+                object obj = ResourceManager.GetObject("linkedin_128x128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap mist_256x256 {
             get {
                 object obj = ResourceManager.GetObject("mist_256x256", resourceCulture);
@@ -256,6 +276,16 @@ namespace WeatherStation.Properties {
         internal static System.Drawing.Bitmap temperature_128x128 {
             get {
                 object obj = ResourceManager.GetObject("temperature_128x128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap weather_station_512x512 {
+            get {
+                object obj = ResourceManager.GetObject("weather_station_512x512", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
