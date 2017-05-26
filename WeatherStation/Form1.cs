@@ -21,6 +21,9 @@ namespace WeatherStation
         private Color currentBackgroundColor;
         private Color targetBackgroundColor;
         private ColorIncrement backgroundColorIncrement;
+        private Image weatherIcon;
+        private Point targetIconPosition;
+        private Point iconPositionIncrement;
         private int totalSteps = 0;
         private int currentSteps = 0;
 
@@ -108,32 +111,32 @@ namespace WeatherStation
             
             if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("cloud"))
             {
-                picWeatherIcon.Image = Resources.clouds_256x256;
+                weatherIcon = Resources.clouds_256x256;
                 targetBackgroundColor = Color.SlateGray;
             }
             else if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("clear"))
             {
-                picWeatherIcon.Image = Resources.sun_256x256;
+                weatherIcon = Resources.sun_256x256;
                 targetBackgroundColor = Color.SkyBlue;
             }
             else if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("storm"))
             {
-                picWeatherIcon.Image = Resources.storm_256x256;
+                weatherIcon = Resources.storm_256x256;
                 targetBackgroundColor = Color.SteelBlue;
             }
             else if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("snow"))
             {
-                picWeatherIcon.Image = Resources.snow_256x256;
+                weatherIcon = Resources.snow_256x256;
                 targetBackgroundColor = Color.AliceBlue;
             }
             else if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("rain") || CurrentWeather.Measurement.WeatherValue.ToLower().Contains("drizzle"))
             {
-                picWeatherIcon.Image = Resources.rain_256x256;
+                weatherIcon = Resources.rain_256x256;
                 targetBackgroundColor = Color.Lavender;
             }
             else if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("mist"))
             {
-                picWeatherIcon.Image = Resources.mist_256x256;
+                weatherIcon = Resources.mist_256x256;
                 targetBackgroundColor = Color.LightGray;
             }
 
@@ -201,6 +204,10 @@ namespace WeatherStation
             backgroundColorIncrement = new ColorIncrement((targetBackgroundColor.R - currentBackgroundColor.R) / totalSteps,
                 (targetBackgroundColor.G - currentBackgroundColor.G) / totalSteps, 
                 (targetBackgroundColor.B - currentBackgroundColor.B) / totalSteps);
+            targetIconPosition = picWeatherIcon.Location;
+            iconPositionIncrement = new Point(50 / totalSteps, 0);
+            picWeatherIcon.Image = null;
+            picWeatherIcon.Location = new Point(targetIconPosition.X - 50, targetIconPosition.Y);  
             transitionTimer.Start();
         }
 
@@ -209,14 +216,22 @@ namespace WeatherStation
             if(currentSteps == totalSteps)
             {
                 this.BackColor = targetBackgroundColor;
+                this.picWeatherIcon.Image = Utilities.ChangeImageOpacity(weatherIcon, 1);
+                this.picWeatherIcon.Location = targetIconPosition;
+                weatherIcon.Dispose();
                 transitionTimer.Stop();
             }
             else
             {
+                // Update background color
                 currentBackgroundColor = Color.FromArgb(currentBackgroundColor.R + backgroundColorIncrement.R,
                     currentBackgroundColor.G + backgroundColorIncrement.G,
                     currentBackgroundColor.B + backgroundColorIncrement.B);
                 this.BackColor = currentBackgroundColor;
+                // Update weather icon
+                picWeatherIcon.Location = new Point(picWeatherIcon.Location.X + iconPositionIncrement.X,
+                    picWeatherIcon.Location.Y + iconPositionIncrement.Y);
+                picWeatherIcon.Image = Utilities.ChangeImageOpacity(weatherIcon, currentSteps / (float)totalSteps);
                 currentSteps++;
             }
         }
