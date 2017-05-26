@@ -17,12 +17,19 @@ namespace WeatherStation
     {
 
         private WeatherMap CurrentWeather;
-
+        // Needed for animations
+        private Color currentBackgroundColor;
+        private Color targetBackgroundColor;
+        private ColorIncrement backgroundColorIncrement;
+        private int totalSteps = 0;
+        private int currentSteps = 0;
 
         public Form1()
         {
             InitializeComponent();
             DoubleBuffered = true;
+
+            pnlFiveDayWeather.BackColor = Color.FromArgb(50, Color.DarkGray);
 
             CurrentWeather = new WeatherMap();
             pnlFiveDayWeather.AutoScroll = true;
@@ -102,26 +109,32 @@ namespace WeatherStation
             if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("cloud"))
             {
                 picWeatherIcon.Image = Resources.clouds_256x256;
+                targetBackgroundColor = Color.SlateGray;
             }
             else if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("clear"))
             {
                 picWeatherIcon.Image = Resources.sun_256x256;
+                targetBackgroundColor = Color.SkyBlue;
             }
             else if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("storm"))
             {
                 picWeatherIcon.Image = Resources.storm_256x256;
+                targetBackgroundColor = Color.SteelBlue;
             }
             else if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("snow"))
             {
                 picWeatherIcon.Image = Resources.snow_256x256;
+                targetBackgroundColor = Color.AliceBlue;
             }
             else if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("rain") || CurrentWeather.Measurement.WeatherValue.ToLower().Contains("drizzle"))
             {
                 picWeatherIcon.Image = Resources.rain_256x256;
+                targetBackgroundColor = Color.Lavender;
             }
             else if (CurrentWeather.Measurement.WeatherValue.ToLower().Contains("mist"))
             {
                 picWeatherIcon.Image = Resources.mist_256x256;
+                targetBackgroundColor = Color.LightGray;
             }
 
             pnlFiveDayWeather.Controls.Clear();
@@ -129,6 +142,7 @@ namespace WeatherStation
             {
                 pnlFiveDayWeather.Controls.Add(new WeatherView(swm));
             }
+            Animate();
         }
         private void UpdateWeather()
         {
@@ -177,6 +191,34 @@ namespace WeatherStation
                 CurrentWeather.Units = "imperial";
             }
             UpdateWeather();
+        }
+
+        private void Animate()
+        {
+            currentBackgroundColor = this.BackColor;
+            totalSteps = 1000 / transitionTimer.Interval;
+            currentSteps = 0;
+            backgroundColorIncrement = new ColorIncrement((targetBackgroundColor.R - currentBackgroundColor.R) / totalSteps,
+                (targetBackgroundColor.G - currentBackgroundColor.G) / totalSteps, 
+                (targetBackgroundColor.B - currentBackgroundColor.B) / totalSteps);
+            transitionTimer.Start();
+        }
+
+        private void transitionTimer_Tick(object sender, EventArgs e)
+        {
+            if(currentSteps == totalSteps)
+            {
+                this.BackColor = targetBackgroundColor;
+                transitionTimer.Stop();
+            }
+            else
+            {
+                currentBackgroundColor = Color.FromArgb(currentBackgroundColor.R + backgroundColorIncrement.R,
+                    currentBackgroundColor.G + backgroundColorIncrement.G,
+                    currentBackgroundColor.B + backgroundColorIncrement.B);
+                this.BackColor = currentBackgroundColor;
+                currentSteps++;
+            }
         }
     }
 }

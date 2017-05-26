@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnUpdateWeather = new System.Windows.Forms.Button();
             this.lblCity = new System.Windows.Forms.Label();
@@ -61,6 +62,7 @@
             this.pbTempMax = new System.Windows.Forms.PictureBox();
             this.pbTempMin = new System.Windows.Forms.PictureBox();
             this.picWeatherIcon = new System.Windows.Forms.PictureBox();
+            this.transitionTimer = new System.Windows.Forms.Timer(this.components);
             this.gbUnits.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLastUpdated)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbClouds)).BeginInit();
@@ -77,6 +79,7 @@
             // 
             // btnUpdateWeather
             // 
+            this.btnUpdateWeather.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnUpdateWeather.Location = new System.Drawing.Point(12, 326);
             this.btnUpdateWeather.Name = "btnUpdateWeather";
             this.btnUpdateWeather.Size = new System.Drawing.Size(560, 23);
@@ -229,6 +232,7 @@
             // 
             // tbEnterCity
             // 
+            this.tbEnterCity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tbEnterCity.Location = new System.Drawing.Point(432, 300);
             this.tbEnterCity.Name = "tbEnterCity";
             this.tbEnterCity.Size = new System.Drawing.Size(140, 20);
@@ -236,6 +240,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Location = new System.Drawing.Point(372, 303);
@@ -246,19 +251,20 @@
             // 
             // label14
             // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(679, 331);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(79, 13);
             this.label14.TabIndex = 29;
-            this.label14.Text = "5 Day Forecast";
+            this.label14.Text = "7 Day Forecast";
             // 
             // pnlFiveDayWeather
             // 
             this.pnlFiveDayWeather.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlFiveDayWeather.BackColor = System.Drawing.Color.White;
+            this.pnlFiveDayWeather.BackColor = System.Drawing.Color.DarkGray;
             this.pnlFiveDayWeather.Location = new System.Drawing.Point(676, 12);
             this.pnlFiveDayWeather.Name = "pnlFiveDayWeather";
             this.pnlFiveDayWeather.Size = new System.Drawing.Size(345, 316);
@@ -266,6 +272,7 @@
             // 
             // gbUnits
             // 
+            this.gbUnits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.gbUnits.BackColor = System.Drawing.Color.Transparent;
             this.gbUnits.Controls.Add(this.rbMetric);
             this.gbUnits.Controls.Add(this.rbImperial);
@@ -420,11 +427,17 @@
             this.picWeatherIcon.TabIndex = 40;
             this.picWeatherIcon.TabStop = false;
             // 
+            // transitionTimer
+            // 
+            this.transitionTimer.Interval = 50;
+            this.transitionTimer.Tick += new System.EventHandler(this.transitionTimer_Tick);
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnUpdateWeather;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1033, 361);
             this.Controls.Add(this.pbLastUpdated);
             this.Controls.Add(this.pbClouds);
@@ -510,6 +523,7 @@
         private System.Windows.Forms.PictureBox pbPressure;
         private System.Windows.Forms.PictureBox pbClouds;
         private System.Windows.Forms.PictureBox pbLastUpdated;
+        private System.Windows.Forms.Timer transitionTimer;
     }
 }
 
