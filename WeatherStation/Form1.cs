@@ -23,7 +23,8 @@ namespace WeatherStation
         private ColorIncrement backgroundColorIncrement;
         private Image weatherIcon;
         private Point targetIconPosition;
-        private Point iconPositionIncrement;
+        private PointF iconPositionIncrement;
+        private PointF iconPosition;
         private int totalSteps = 0;
         private int currentSteps = 0;
 
@@ -205,9 +206,10 @@ namespace WeatherStation
                 (targetBackgroundColor.G - currentBackgroundColor.G) / totalSteps, 
                 (targetBackgroundColor.B - currentBackgroundColor.B) / totalSteps);
             targetIconPosition = picWeatherIcon.Location;
-            iconPositionIncrement = new Point(50 / totalSteps, 0);
+            iconPositionIncrement = new PointF(50.0f / totalSteps, 0f);
             picWeatherIcon.Image = null;
-            picWeatherIcon.Location = new Point(targetIconPosition.X - 50, targetIconPosition.Y);  
+            picWeatherIcon.Location = new Point(targetIconPosition.X - 50, targetIconPosition.Y);
+            iconPosition = new PointF(picWeatherIcon.Location.X, picWeatherIcon.Location.Y);
             transitionTimer.Start();
         }
 
@@ -229,8 +231,9 @@ namespace WeatherStation
                     currentBackgroundColor.B + backgroundColorIncrement.B);
                 this.BackColor = currentBackgroundColor;
                 // Update weather icon
-                picWeatherIcon.Location = new Point(picWeatherIcon.Location.X + iconPositionIncrement.X,
-                    picWeatherIcon.Location.Y + iconPositionIncrement.Y);
+                iconPosition = new PointF(iconPosition.X + iconPositionIncrement.X,
+                    iconPosition.Y + iconPositionIncrement.Y);
+                picWeatherIcon.Location = new Point((int)iconPosition.X, (int)iconPosition.Y);
                 picWeatherIcon.Image = Utilities.ChangeImageOpacity(weatherIcon, currentSteps / (float)totalSteps);
                 currentSteps++;
             }
