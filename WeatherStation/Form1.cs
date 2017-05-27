@@ -31,6 +31,8 @@ namespace WeatherStation
 
         private bool AutoUpdateEnabled;
         private bool UpdateOnStartup;
+        private string OldCity;
+        private bool UsedOldCity;
 
         public Form1()
         {
@@ -39,6 +41,10 @@ namespace WeatherStation
             ConstructorCheckedChanged = true;
             pnlFiveDayWeather.BackColor = Color.FromArgb(50, Color.DarkGray);
             menuStrip1.BackColor = Color.FromArgb(50, Color.DarkGray);
+            btnUpdateWeather.BackColor = Color.FromArgb(50, Color.DarkGray);
+            btnUpdateWeather.FlatAppearance.MouseOverBackColor = Color.FromArgb(90, Color.DarkGray);
+            btnUpdateWeather.FlatAppearance.MouseDownBackColor = Color.FromArgb(70, Color.DarkGray);
+            btnUpdateWeather.FlatAppearance.BorderColor = Color.FromArgb(0, Color.White);
             CheckedCounter = 0;
             targetIconPosition = picWeatherIcon.Location;
 
@@ -89,6 +95,8 @@ namespace WeatherStation
                 }
             }
             ConstructorCheckedChanged = false;
+            OldCity = null;
+            UsedOldCity = false;
         }
 
         private Color GetTemperatureColor(float temperature, string unit)
@@ -177,35 +185,35 @@ namespace WeatherStation
             if (CurrentWeather.UpdateMeasurement())
             {
                 UpdateView();
+                if(UsedOldCity)
+                {
+                    tbEnterCity.Clear();
+                }
             }
             else
             {
                 MessageBox.Show("Error! Something went wrong!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (UsedOldCity)
+                {
+                    CurrentWeather.City = OldCity;
+                }
+            }
+            if(UsedOldCity)
+            {
+                OldCity = null;
+                UsedOldCity = false;
             }
         }
 
         private void btnUpdateWeather_Click(object sender, EventArgs e)
         {
-            //CurrentWeather.UpdateMeasurement();
             if (tbEnterCity.Text.Trim().Length > 0)
             {
+                OldCity = CurrentWeather.City;
                 CurrentWeather.City = tbEnterCity.Text;
-                /*if (CurrentWeather.UpdateMeasurement())
-                {
-                    UpdateView();
-                }
-                else
-                {
-                    MessageBox.Show("Error! Please enter valid information.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }*/
-                UpdateWeather();
-
+                UsedOldCity = true;
             }
-            else
-            {
-                MessageBox.Show("Please enter a city!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
+            UpdateWeather();
         }
 
         private void rbUnits_CheckedChanged(object sender, EventArgs e)
@@ -287,18 +295,18 @@ namespace WeatherStation
             if(au.ShowDialog() == DialogResult.OK)
             {
                 AutoUpdateEnabled = au.AutoUpdateEnabled;
-                if(AutoUpdateEnabled)
+                UpdateOnStartup = au.UpdateOnStartup;
+                if (AutoUpdateEnabled)
                 {
                     AutoUpdateTimer.Interval = 60000 * au.UpdateInterval;
                     if (!AutoUpdateTimer.Enabled)
                     {
                         AutoUpdateTimer.Enabled = true;
                     }
-                    UpdateOnStartup = au.UpdateOnStartup;
+                    
                 }
                 else
                 {
-                    UpdateOnStartup = false;
                     AutoUpdateTimer.Interval = 60000 * 10;
                     if (AutoUpdateTimer.Enabled)
                     {
@@ -348,6 +356,11 @@ namespace WeatherStation
             }
 
             return true;
+        }
+
+        private void tbEnterCity_TextChanged(object sender, EventArgs e)
+        {
+            btnUpdateWeather.Text = (tbEnterCity.Text.Trim().Length == 0 && CurrentWeather.City != null) ? "Update Weather" : "Get Weather";
         }
     }
 }

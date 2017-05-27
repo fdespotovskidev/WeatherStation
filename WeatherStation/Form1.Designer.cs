@@ -87,12 +87,16 @@
             // btnUpdateWeather
             // 
             this.btnUpdateWeather.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnUpdateWeather.Location = new System.Drawing.Point(12, 355);
+            this.btnUpdateWeather.BackColor = System.Drawing.Color.Transparent;
+            this.btnUpdateWeather.FlatAppearance.BorderSize = 0;
+            this.btnUpdateWeather.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateWeather.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnUpdateWeather.Location = new System.Drawing.Point(12, 349);
             this.btnUpdateWeather.Name = "btnUpdateWeather";
-            this.btnUpdateWeather.Size = new System.Drawing.Size(560, 23);
+            this.btnUpdateWeather.Size = new System.Drawing.Size(542, 29);
             this.btnUpdateWeather.TabIndex = 1;
             this.btnUpdateWeather.Text = "Update Weather";
-            this.btnUpdateWeather.UseVisualStyleBackColor = true;
+            this.btnUpdateWeather.UseVisualStyleBackColor = false;
             this.btnUpdateWeather.Click += new System.EventHandler(this.btnUpdateWeather_Click);
             // 
             // lblCity
@@ -240,19 +244,22 @@
             // tbEnterCity
             // 
             this.tbEnterCity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.tbEnterCity.Location = new System.Drawing.Point(432, 329);
+            this.tbEnterCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbEnterCity.Location = new System.Drawing.Point(406, 317);
             this.tbEnterCity.Name = "tbEnterCity";
-            this.tbEnterCity.Size = new System.Drawing.Size(140, 20);
+            this.tbEnterCity.Size = new System.Drawing.Size(148, 26);
             this.tbEnterCity.TabIndex = 26;
+            this.tbEnterCity.TextChanged += new System.EventHandler(this.tbEnterCity_TextChanged);
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(372, 332);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(321, 320);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 13);
+            this.label2.Size = new System.Drawing.Size(79, 20);
             this.label2.TabIndex = 27;
             this.label2.Text = "Enter city:";
             // 
@@ -283,9 +290,10 @@
             this.gbUnits.BackColor = System.Drawing.Color.Transparent;
             this.gbUnits.Controls.Add(this.rbMetric);
             this.gbUnits.Controls.Add(this.rbImperial);
-            this.gbUnits.Location = new System.Drawing.Point(576, 307);
+            this.gbUnits.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.gbUnits.Location = new System.Drawing.Point(560, 307);
             this.gbUnits.Name = "gbUnits";
-            this.gbUnits.Size = new System.Drawing.Size(94, 71);
+            this.gbUnits.Size = new System.Drawing.Size(110, 71);
             this.gbUnits.TabIndex = 39;
             this.gbUnits.TabStop = false;
             this.gbUnits.Text = "Units";
@@ -296,7 +304,7 @@
             this.rbMetric.Checked = true;
             this.rbMetric.Location = new System.Drawing.Point(6, 42);
             this.rbMetric.Name = "rbMetric";
-            this.rbMetric.Size = new System.Drawing.Size(54, 17);
+            this.rbMetric.Size = new System.Drawing.Size(70, 24);
             this.rbMetric.TabIndex = 1;
             this.rbMetric.TabStop = true;
             this.rbMetric.Text = "Metric";
@@ -308,7 +316,7 @@
             this.rbImperial.AutoSize = true;
             this.rbImperial.Location = new System.Drawing.Point(6, 19);
             this.rbImperial.Name = "rbImperial";
-            this.rbImperial.Size = new System.Drawing.Size(61, 17);
+            this.rbImperial.Size = new System.Drawing.Size(83, 24);
             this.rbImperial.TabIndex = 0;
             this.rbImperial.Text = "Imperial";
             this.rbImperial.UseVisualStyleBackColor = true;
@@ -342,7 +350,7 @@
             // autoUpdateToolStripMenuItem
             // 
             this.autoUpdateToolStripMenuItem.Name = "autoUpdateToolStripMenuItem";
-            this.autoUpdateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.autoUpdateToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.autoUpdateToolStripMenuItem.Text = "Auto Update";
             this.autoUpdateToolStripMenuItem.Click += new System.EventHandler(this.autoUpdateToolStripMenuItem_Click);
             // 

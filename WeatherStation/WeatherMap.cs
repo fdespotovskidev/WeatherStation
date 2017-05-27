@@ -78,59 +78,61 @@ namespace WeatherStation
             try
             {
                 WeatherData.Load(MeasurementSourceAddress);
+
+                Measurement = new WeatherMeasurement();
+                XmlNode node;
+
+                node = WeatherData.SelectSingleNode("//city");
+                Measurement.City = node.Attributes[1].Value;
+                node = WeatherData.SelectSingleNode("//sun");
+                string SunRiseDate = node.Attributes[0].Value;
+                Measurement.SunRise = DateTime.Parse(SunRiseDate);
+                string SunSetDate = node.Attributes[1].Value;
+                Measurement.SunSet = DateTime.Parse(SunSetDate);
+                node = WeatherData.SelectSingleNode("//temperature");
+                float CurrentTemperature;
+                parseFloat(node.Attributes[0].Value, out CurrentTemperature);
+                Measurement.TemperatureCurrent = CurrentTemperature;
+                float MinTemperature;
+                parseFloat(node.Attributes[1].Value, out MinTemperature);
+                Measurement.TemperatureMin = MinTemperature;
+                float MaxTemperature;
+                parseFloat(node.Attributes[2].Value, out MaxTemperature);
+                Measurement.TemperatureMax = MaxTemperature;
+                Measurement.TemperatureUnit = Units;
+                node = WeatherData.SelectSingleNode("//humidity");
+                int Humidity;
+                int.TryParse(node.Attributes[0].Value, out Humidity);
+                Measurement.Humidity = Humidity;
+                node = WeatherData.SelectSingleNode("//pressure");
+                int Pressure;
+                int.TryParse(node.Attributes[0].Value, out Pressure);
+                Measurement.Pressure = Pressure;
+                Measurement.PressureUnit = node.Attributes[1].Value;
+                node = WeatherData.SelectSingleNode("//speed");
+                float WindSpeed;
+                parseFloat(node.Attributes[0].Value, out WindSpeed);
+                Measurement.WindSpeed = WindSpeed;
+                Measurement.WindName = node.Attributes[1].Value;
+                node = WeatherData.SelectSingleNode("//direction");
+                Measurement.WindDirection = node.Attributes[2].Value;
+                node = WeatherData.SelectSingleNode("//clouds");
+                int CloudsValue;
+                int.TryParse(node.Attributes[0].Value, out CloudsValue);
+                Measurement.CloudsValue = CloudsValue;
+                Measurement.CloudsName = node.Attributes[1].Value;
+                node = WeatherData.SelectSingleNode("//weather");
+                Measurement.WeatherValue = node.Attributes[1].Value;
+                node = WeatherData.SelectSingleNode("//lastupdate");
+                string LastUpdate = node.Attributes[0].Value;
+                Measurement.LastUpdate = DateTime.Parse(LastUpdate);
             }
             catch(Exception e)
             {
                 return false;
             }
             
-            Measurement = new WeatherMeasurement();
-            XmlNode node;
-
-            node = WeatherData.SelectSingleNode("//city");
-            Measurement.City = node.Attributes[1].Value;
-            node = WeatherData.SelectSingleNode("//sun");
-            string SunRiseDate = node.Attributes[0].Value;
-            Measurement.SunRise = DateTime.Parse(SunRiseDate);
-            string SunSetDate = node.Attributes[1].Value;
-            Measurement.SunSet = DateTime.Parse(SunSetDate);
-            node = WeatherData.SelectSingleNode("//temperature");
-            float CurrentTemperature;
-            parseFloat(node.Attributes[0].Value, out CurrentTemperature);
-            Measurement.TemperatureCurrent = CurrentTemperature;
-            float MinTemperature;
-            parseFloat(node.Attributes[1].Value, out MinTemperature);
-            Measurement.TemperatureMin = MinTemperature;
-            float MaxTemperature;
-            parseFloat(node.Attributes[2].Value, out MaxTemperature);
-            Measurement.TemperatureMax = MaxTemperature;
-            Measurement.TemperatureUnit = Units;
-            node = WeatherData.SelectSingleNode("//humidity");
-            int Humidity;
-            int.TryParse(node.Attributes[0].Value, out Humidity);
-            Measurement.Humidity = Humidity;
-            node = WeatherData.SelectSingleNode("//pressure");
-            int Pressure;
-            int.TryParse(node.Attributes[0].Value, out Pressure);
-            Measurement.Pressure = Pressure;
-            Measurement.PressureUnit = node.Attributes[1].Value;
-            node = WeatherData.SelectSingleNode("//speed");
-            float WindSpeed;
-            parseFloat(node.Attributes[0].Value, out WindSpeed);
-            Measurement.WindSpeed = WindSpeed;
-            Measurement.WindName = node.Attributes[1].Value;
-            node = WeatherData.SelectSingleNode("//direction");
-            Measurement.WindDirection = node.Attributes[2].Value;
-            node = WeatherData.SelectSingleNode("//clouds");
-            int CloudsValue;
-            int.TryParse(node.Attributes[0].Value, out CloudsValue);
-            Measurement.CloudsValue = CloudsValue;
-            Measurement.CloudsName = node.Attributes[1].Value;
-            node = WeatherData.SelectSingleNode("//weather");
-            Measurement.WeatherValue = node.Attributes[1].Value;
-            node = WeatherData.SelectSingleNode("//lastupdate");
-            string LastUpdate = node.Attributes[0].Value;
-            Measurement.LastUpdate = DateTime.Parse(LastUpdate);
+            
 
             //Five day forecast update
 
@@ -138,38 +140,39 @@ namespace WeatherStation
             try
             {
                 FiveDayWeatherData.Load(FiveDayMeasurementSourceAddress);
+
+                FiveDayMeasurements.Clear();
+                XmlNode node;
+                foreach (XmlNode time_node in FiveDayWeatherData.SelectNodes("//time"))
+                {
+                    ShortWeatherMeasurement cur = new ShortWeatherMeasurement();
+                    cur.Date = DateTime.Parse(time_node.Attributes[0].Value);
+                    node = time_node.SelectSingleNode("temperature");
+
+                    float dayTemp, minTemp, maxTemp, nightTemp;
+                    parseFloat(node.Attributes[0].Value, out dayTemp);
+                    parseFloat(node.Attributes[1].Value, out minTemp);
+                    parseFloat(node.Attributes[2].Value, out maxTemp);
+                    parseFloat(node.Attributes[3].Value, out nightTemp);
+
+                    cur.TemperatureDay = dayTemp;
+                    cur.TemperatureMin = minTemp;
+                    cur.TemperatureMax = maxTemp;
+                    cur.TemperatureNight = nightTemp;
+
+                    cur.TemperatureUnit = Units;
+
+                    node = time_node.SelectSingleNode("clouds");
+                    cur.CloudsName = node.Attributes[0].Value;
+                    int CloudsValue;
+                    int.TryParse(node.Attributes[1].Value, out CloudsValue);
+                    cur.CloudsValue = CloudsValue;
+                    FiveDayMeasurements.Add(cur);
+                }
             }
             catch(Exception e)
             {
                 return false;
-            }
-
-            FiveDayMeasurements.Clear();
-
-            foreach(XmlNode time_node in FiveDayWeatherData.SelectNodes("//time"))
-            {
-                ShortWeatherMeasurement cur = new ShortWeatherMeasurement();
-                cur.Date = DateTime.Parse(time_node.Attributes[0].Value);
-                node = time_node.SelectSingleNode("temperature");
-
-                float dayTemp, minTemp, maxTemp, nightTemp;
-                parseFloat(node.Attributes[0].Value, out dayTemp);
-                parseFloat(node.Attributes[1].Value, out minTemp);
-                parseFloat(node.Attributes[2].Value, out maxTemp);
-                parseFloat(node.Attributes[3].Value, out nightTemp);
-
-                cur.TemperatureDay = dayTemp;
-                cur.TemperatureMin = minTemp;
-                cur.TemperatureMax = maxTemp;
-                cur.TemperatureNight = nightTemp;
-
-                cur.TemperatureUnit = Units;
-
-                node = time_node.SelectSingleNode("clouds");
-                cur.CloudsName = node.Attributes[0].Value;
-                int.TryParse(node.Attributes[1].Value, out CloudsValue);
-                cur.CloudsValue = CloudsValue;
-                FiveDayMeasurements.Add(cur);
             }
 
             //saving measurement to file
