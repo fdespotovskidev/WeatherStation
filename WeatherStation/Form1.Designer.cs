@@ -57,6 +57,7 @@
             this.autoUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AutoUpdateTimer = new System.Windows.Forms.Timer(this.components);
             this.pbLastUpdated = new System.Windows.Forms.PictureBox();
             this.pbClouds = new System.Windows.Forms.PictureBox();
             this.pbPressure = new System.Windows.Forms.PictureBox();
@@ -68,7 +69,6 @@
             this.pbTempMax = new System.Windows.Forms.PictureBox();
             this.pbTempMin = new System.Windows.Forms.PictureBox();
             this.picWeatherIcon = new System.Windows.Forms.PictureBox();
-            this.AutoUpdateTimer = new System.Windows.Forms.Timer(this.components);
             this.gbUnits.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLastUpdated)).BeginInit();
@@ -106,9 +106,9 @@
             this.lblCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblCity.Location = new System.Drawing.Point(19, 29);
             this.lblCity.Name = "lblCity";
-            this.lblCity.Size = new System.Drawing.Size(164, 39);
+            this.lblCity.Size = new System.Drawing.Size(41, 39);
             this.lblCity.TabIndex = 3;
-            this.lblCity.Text = "cityName";
+            this.lblCity.Text = "--";
             // 
             // lblSunRise
             // 
@@ -117,9 +117,9 @@
             this.lblSunRise.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblSunRise.Location = new System.Drawing.Point(56, 149);
             this.lblSunRise.Name = "lblSunRise";
-            this.lblSunRise.Size = new System.Drawing.Size(136, 20);
+            this.lblSunRise.Size = new System.Drawing.Size(33, 20);
             this.lblSunRise.TabIndex = 5;
-            this.lblSunRise.Text = "sunRiseDateTime";
+            this.lblSunRise.Text = "--:--";
             // 
             // lblSunSet
             // 
@@ -128,9 +128,9 @@
             this.lblSunSet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblSunSet.Location = new System.Drawing.Point(56, 197);
             this.lblSunSet.Name = "lblSunSet";
-            this.lblSunSet.Size = new System.Drawing.Size(129, 20);
+            this.lblSunSet.Size = new System.Drawing.Size(33, 20);
             this.lblSunSet.TabIndex = 7;
-            this.lblSunSet.Text = "sunSetDateTime";
+            this.lblSunSet.Text = "--:--";
             // 
             // lblCurrentTemperature
             // 
@@ -203,9 +203,9 @@
             this.lblWindName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblWindName.Location = new System.Drawing.Point(379, 198);
             this.lblWindName.Name = "lblWindName";
-            this.lblWindName.Size = new System.Drawing.Size(49, 20);
+            this.lblWindName.Size = new System.Drawing.Size(19, 20);
             this.lblWindName.TabIndex = 18;
-            this.lblWindName.Text = "Wind:";
+            this.lblWindName.Text = "--";
             // 
             // lblClouds
             // 
@@ -214,9 +214,9 @@
             this.lblClouds.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblClouds.Location = new System.Drawing.Point(412, 140);
             this.lblClouds.Name = "lblClouds";
-            this.lblClouds.Size = new System.Drawing.Size(92, 20);
+            this.lblClouds.Size = new System.Drawing.Size(19, 20);
             this.lblClouds.TabIndex = 21;
-            this.lblClouds.Text = "cloudsDesc";
+            this.lblClouds.Text = "--";
             // 
             // lblWeatherValue
             // 
@@ -225,9 +225,9 @@
             this.lblWeatherValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblWeatherValue.Location = new System.Drawing.Point(213, 217);
             this.lblWeatherValue.Name = "lblWeatherValue";
-            this.lblWeatherValue.Size = new System.Drawing.Size(103, 20);
+            this.lblWeatherValue.Size = new System.Drawing.Size(19, 20);
             this.lblWeatherValue.TabIndex = 23;
-            this.lblWeatherValue.Text = "weatherDesc";
+            this.lblWeatherValue.Text = "--";
             this.lblWeatherValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblLastUpdated
@@ -237,9 +237,9 @@
             this.lblLastUpdated.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblLastUpdated.Location = new System.Drawing.Point(56, 75);
             this.lblLastUpdated.Name = "lblLastUpdated";
-            this.lblLastUpdated.Size = new System.Drawing.Size(165, 20);
+            this.lblLastUpdated.Size = new System.Drawing.Size(121, 20);
             this.lblLastUpdated.TabIndex = 25;
-            this.lblLastUpdated.Text = "lastUpdatedDateTime";
+            this.lblLastUpdated.Text = "dd.mm.yyyy, --:--";
             // 
             // tbEnterCity
             // 
@@ -369,6 +369,11 @@
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // AutoUpdateTimer
+            // 
+            this.AutoUpdateTimer.Interval = 10000;
+            this.AutoUpdateTimer.Tick += new System.EventHandler(this.AutoUpdateTimer_Tick);
+            // 
             // pbLastUpdated
             // 
             this.pbLastUpdated.BackColor = System.Drawing.Color.Transparent;
@@ -482,17 +487,13 @@
             // picWeatherIcon
             // 
             this.picWeatherIcon.BackColor = System.Drawing.Color.Transparent;
+            this.picWeatherIcon.Image = global::WeatherStation.Properties.Resources.weather_station_256x256;
             this.picWeatherIcon.Location = new System.Drawing.Point(139, -1);
             this.picWeatherIcon.Name = "picWeatherIcon";
             this.picWeatherIcon.Size = new System.Drawing.Size(256, 256);
             this.picWeatherIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picWeatherIcon.TabIndex = 40;
             this.picWeatherIcon.TabStop = false;
-            // 
-            // AutoUpdateTimer
-            // 
-            this.AutoUpdateTimer.Interval = 10000;
-            this.AutoUpdateTimer.Tick += new System.EventHandler(this.AutoUpdateTimer_Tick);
             // 
             // Form1
             // 

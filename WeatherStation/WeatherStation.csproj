@@ -198,5 +198,11 @@
   <ItemGroup>
     <None Include="images\github_128x128.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="images\question_mark_256x256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\weather_station_256x256.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

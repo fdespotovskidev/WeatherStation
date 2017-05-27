@@ -283,6 +283,16 @@ namespace WeatherStation.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap weather_station_256x256 {
+            get {
+                object obj = ResourceManager.GetObject("weather_station_256x256", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap weather_station_512x512 {
             get {
                 object obj = ResourceManager.GetObject("weather_station_512x512", resourceCulture);
